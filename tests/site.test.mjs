@@ -193,6 +193,29 @@ test("계절 구분: 지역마다 1~12월이 정확히 한 계절에 속한다",
   }
 });
 
+test("경비: 현지 통화 + 원화 + 기준 환율로 표시된다", () => {
+  const FX = vm.runInContext("FX", ctx);
+  assert.deepEqual({ ...FX.krw }, { CAD: 960, NZD: 740, EUR: 1480 });
+  assert.match(FX.asOf, /2026-11/);
+  for (const id of FX.src) assert.ok(srcIds.has(id), id);
+  const cur = { banff: "CAD", nz: "NZD", dolo: "EUR" };
+  for (const r of REGIONS) {
+    assert.equal(r.currency, cur[r.id]);
+    for (const se of r.seasons) {
+      const c = se.compare.cost;
+      assert.ok(Array.isArray(c.amount) && c.amount[0] < c.amount[1], `${r.id}.${se.id}`);
+      assert.ok(!("value" in c), "원화 문자열을 직접 저장하지 않음 (환율로 계산)");
+    }
+  }
+  assert.equal(App.formatCost({ amount: [4700, 7300] }, "CAD", FX), "1인 약 CAD 4,700~7,300 (약 451~701만원)");
+  assert.equal(App.formatCost({ amount: [2000, 3400], note: "x" }, "EUR", FX), "1인 약 EUR 2,000~3,400 (약 296~503만원) · x");
+  const table = App.renderCompare(REGIONS, 9, COMPARE_ROWS, SOURCES);
+  assert.ok(table.includes("CAD 4,700~7,300") && table.includes("NZD 4,700~7,400") && table.includes("EUR 2,700~4,400"));
+  const fx = App.renderFx(FX, SOURCES);
+  assert.ok(fx.includes("1 CAD ≈ 960원") && fx.includes("1 NZD ≈ 740원") && fx.includes("1 EUR ≈ 1,480원"));
+  assert.ok(/<sup><a href="#src-fx-hana">/.test(fx), "환율 출처 각주");
+});
+
 test("계절 구분: 월 범위 라벨 (연도를 넘는 구간 포함)", () => {
   assert.equal(App.monthsLabel([6,7,8,9]), "6~9월");
   assert.equal(App.monthsLabel([4,5,10]), "4~5·10월");

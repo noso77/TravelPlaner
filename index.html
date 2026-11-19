@@ -153,6 +153,7 @@ footer{padding:30px 0 40px;color:var(--muted);font-size:.82rem}
   <section id="compare" aria-labelledby="h-compare">
     <h2 id="h-compare">3곳 나란히 비교</h2>
     <div class="scroll-x" id="compare-table"></div>
+    <p class="legend" id="fx-note"></p>
     <p class="legend">등급: <span class="lv lv-good">좋음</span><span class="lv lv-mid">보통</span><span class="lv lv-warn">주의</span> · 표가 화면보다 넓으면 좌우로 밀어서 보세요.</p>
   </section>
 
@@ -202,12 +203,15 @@ const SOURCES = [
   { id:"moonhoney", title:"Moonhoney Travel – 9월 돌로미티 하이킹 (리프트 종료 시기)", url:"https://www.moonhoneytravel.com/hiking-dolomites-september/", official:false, read:true, checkedAt:CHECKED },
   { id:"wanderlog-cortina", title:"Wanderlog – 9월 코르티나 날씨", url:"https://wanderlog.com/geoInMonth/10027/9/cortina-dampezzo-in-september", official:false, read:true, checkedAt:CHECKED },
   { id:"commons", title:"Wikimedia Commons – 사진 출처 (각 사진 페이지 링크 참조)", url:"https://commons.wikimedia.org/", official:true, read:true, checkedAt:CHECKED },
+  { id:"fx-hana", title:"하나은행 Daily 외환 리포트 (2026-11-12) – USD/KRW·EUR/KRW", url:"https://biz.kebhana.com/cont/hanafx/file/Daily261112.pdf", official:true, read:true, checkedAt:CHECKED },
+  { id:"fx-xe", title:"XE – USD/CAD 환율 차트 (2026-11-04)", url:"https://www.xe.com/currencycharts/?from=USD&to=CAD", official:false, read:true, checkedAt:CHECKED },
+  { id:"fx-nzd", title:"therighttrader – NZD/USD 중간 시세 (2026-11-16)", url:"https://therighttrader.com/convert/usd-to-nzd", official:false, read:true, checkedAt:CHECKED },
   { id:"estimate", title:"작성자 추정 – 공개 자료 없이 계산한 참고값 (검증 필요)", url:"", official:false, read:false, checkedAt:CHECKED }
 ];
 
 const REGIONS = [
 {
-  id:"banff", cls:"r-banff", flag:"🍁", name:"캐나다 밴프 & 재스퍼", hemisphere:"N",
+  id:"banff", cls:"r-banff", flag:"🍁", name:"캐나다 밴프 & 재스퍼", currency:"CAD", hemisphere:"N",
   summary:"에메랄드빛 빙하호와 아이스필드 파크웨이 드라이브. 직항이 있어 이동이 가장 편해요.",
   monthly:[2,2,2,1,2,4,5,5,5,2,1,2],
   season:["한겨울, 스키 시즌 (−15°C 안팎)","한겨울, 호수 결빙","늦겨울, 트레일 대부분 눈","해빙기, 진흙·눈 섞인 비수기","늦봄, 호수 대부분 아직 결빙","초여름, 호수 해빙·성수기 시작","한여름 성수기, 가장 붐빔","한여름 성수기, 산불 연기 가능","초가을, 라치(낙엽송) 단풍, 일교차 큼","가을 끝, 첫눈·시설 휴업 시작","초겨울 비수기","겨울, 스키 시즌 시작"],
@@ -246,7 +250,7 @@ const REGIONS = [
       ],
       tips:["모레인 호수 일출은 첫 셔틀이나 이른 시간 투어를 노리세요.","라치 단풍은 라치 밸리 트레일(모레인 호수 출발)이 유명해요. 9월 중순이 절정이에요.","말린 호수 크루즈도 성수기엔 미리 예약하세요."],
       compare:{
-        cost:{ value:"1인 약 450~700만원", level:"warn", src:["estimate"], estimate:true },
+        cost:{ amount:[4700,7300], level:"warn", src:["estimate","fx-hana","fx-xe"], estimate:true },
         drive:{ value:"넓은 도로, 성수기 주차난. 야생동물 출몰 주의", level:"good", src:["estimate"], estimate:true },
         trek:{ value:"모든 트레일 개방. 쉬운 코스부터 중급(라치 밸리)까지 다양", level:"good", src:["estimate"], estimate:true },
         lodging:{ value:"매우 비싸고 일찍 마감. 6개월 전 예약 권장", level:"warn", src:["estimate"], estimate:true }
@@ -260,7 +264,7 @@ const REGIONS = [
       ],
       tips:["10월 초는 단풍 끝물과 한산함을 함께 누릴 수 있어요.","호수 색을 보려면 6월 이후가 안전해요."],
       compare:{
-        cost:{ value:"1인 약 350~550만원", level:"mid", src:["estimate"], estimate:true },
+        cost:{ amount:[3600,5700], level:"mid", src:["estimate","fx-hana","fx-xe"], estimate:true },
         drive:{ value:"눈·결빙 가능, 겨울 타이어 권장", level:"mid", src:["estimate"], estimate:true },
         trek:{ value:"저지대 위주. 고지대 트레일은 눈", level:"mid", src:["estimate"], estimate:true },
         lodging:{ value:"구하기 쉽고 가격도 무난", level:"good", src:["estimate"], estimate:true }
@@ -273,7 +277,7 @@ const REGIONS = [
       ],
       tips:["레이크 루이스 호수 위 아이스 스케이트가 겨울 명물이에요.","밴프 어퍼 온천에서 설경을 보며 몸을 녹이세요."],
       compare:{
-        cost:{ value:"1인 약 350~600만원 (연말·스키 성수기는 더 비쌈)", level:"mid", src:["estimate"], estimate:true },
+        cost:{ amount:[3600,6300], note:"연말·스키 성수기는 더 비쌈", level:"mid", src:["estimate","fx-hana","fx-xe"], estimate:true },
         drive:{ value:"눈길·결빙, 겨울 타이어 필수, 도로 통제 잦음", level:"warn", src:["estimate"], estimate:true },
         trek:{ value:"트레킹 대신 스노슈잉·스키", level:"warn", src:["estimate"], estimate:true },
         lodging:{ value:"연말·주말 외엔 여유", level:"good", src:["estimate"], estimate:true }
@@ -282,7 +286,7 @@ const REGIONS = [
   checklist:["캐나다 eTA 신청 (공식 사이트)","Parks Canada 입장 패스 구매","모레인 호수·레이크 루이스 셔틀 예약 (4월 중순 오픈)","렌터카 예약 (캘거리 공항 픽업)","밴프·재스퍼·캔모어 숙소 예약","베어 스프레이 현지 구매 (항공기 반입 불가)","말린 호수 크루즈 예약"]
 },
 {
-  id:"nz", cls:"r-nz", flag:"🥝", name:"뉴질랜드 남섬", hemisphere:"S",
+  id:"nz", cls:"r-nz", flag:"🥝", name:"뉴질랜드 남섬", currency:"NZD", hemisphere:"S",
   summary:"피오르드, 빙하, 별빛 호수까지 풍경이 다양해요. 남반구라 한국과 계절이 반대예요.",
   monthly:[5,5,5,4,2,2,2,2,2,3,4,4],
   season:["한여름 성수기, 해가 김","한여름, 날씨 가장 안정적","늦여름·초가을, 추천 시기","가을 단풍 (애로우타운)","늦가을, 쌀쌀함","초겨울, 스키 시즌","한겨울, 산간 도로 결빙","한겨울, 스키 시즌","초봄, 쌀쌀하고 날씨가 자주 바뀜, 비수기","봄, 루핀 개화 전, 날씨 회복","늦봄, 루핀 꽃 시즌","초여름, 성수기 시작"],
@@ -316,7 +320,7 @@ const REGIONS = [
       ],
       tips:["샌드플라이(모래파리) 기피제를 꼭 챙기세요.","연말연시는 현지인 휴가철이라 숙소를 특히 일찍 잡으세요."],
       compare:{
-        cost:{ value:"1인 약 450~650만원", level:"warn", src:["estimate"], estimate:true },
+        cost:{ amount:[6100,8800], level:"warn", src:["estimate","fx-hana","fx-nzd"], estimate:true },
         drive:{ value:"도로 상태는 좋지만 캠퍼밴이 많고 좌측통행", level:"mid", src:["drivesafe","estimate"], estimate:true },
         trek:{ value:"모든 트랙 개방, 쉬운 코스 많음", level:"good", src:["estimate"], estimate:true },
         lodging:{ value:"비싸고 일찍 마감. 4~6개월 전 예약 권장", level:"warn", src:["estimate"], estimate:true }
@@ -327,7 +331,7 @@ const REGIONS = [
       cautions:[],
       tips:["3월은 여름 날씨에 가격은 조금 내려가서 가장 추천하는 시기예요."],
       compare:{
-        cost:{ value:"1인 약 400~600만원", level:"mid", src:["estimate"], estimate:true },
+        cost:{ amount:[5400,8100], level:"mid", src:["estimate","fx-hana","fx-nzd"], estimate:true },
         drive:{ value:"좌측통행, 5월엔 산간 아침 결빙 가능", level:"mid", src:["drivesafe","estimate"], estimate:true },
         trek:{ value:"대부분 트랙 개방", level:"good", src:["estimate"], estimate:true },
         lodging:{ value:"3월은 아직 붐비고, 4~5월은 여유", level:"mid", src:["estimate"], estimate:true }
@@ -340,7 +344,7 @@ const REGIONS = [
       ],
       tips:["7월 방학철엔 퀸스타운이 스키 관광객으로 붐벼요."],
       compare:{
-        cost:{ value:"1인 약 400~600만원", level:"mid", src:["estimate"], estimate:true },
+        cost:{ amount:[5400,8100], level:"mid", src:["estimate","fx-hana","fx-nzd"], estimate:true },
         drive:{ value:"결빙·눈길, 체인 필요 구간, 좌측통행", level:"warn", src:["drivesafe","estimate"], estimate:true },
         trek:{ value:"저지대 트랙만 무난. 고산 트랙은 눈", level:"mid", src:["estimate"], estimate:true },
         lodging:{ value:"스키 거점(퀸스타운)은 붐비고 그 외는 여유", level:"mid", src:["estimate"], estimate:true }
@@ -355,7 +359,7 @@ const REGIONS = [
       ],
       tips:["밀포드 사운드는 비 오는 날 폭포가 더 장관이에요. 날씨에 실망하지 마세요.","루핀은 11월 말 테카포 호숫가가 유명해요."],
       compare:{
-        cost:{ value:"1인 약 350~550만원", level:"good", src:["estimate"], estimate:true },
+        cost:{ amount:[4700,7400], level:"good", src:["estimate","fx-hana","fx-nzd"], estimate:true },
         drive:{ value:"좌측통행, 산간 도로에 눈 가능", level:"mid", src:["drivesafe","estimate"], estimate:true },
         trek:{ value:"평탄한 트랙은 무난, 일부 고산 트랙에 눈", level:"mid", src:["estimate"], estimate:true },
         lodging:{ value:"구하기 쉽고 가격도 무난", level:"good", src:["estimate"], estimate:true }
@@ -364,7 +368,7 @@ const REGIONS = [
   checklist:["NZeTA와 IVL 결제 (앱 권장)","렌터카 예약 (편도 반납 여부 확인)","밀포드 사운드 크루즈 예약","퀸스타운·와나카·테카포·마운트 쿡 숙소 예약","국제운전면허증 발급","방수 재킷과 보온 레이어 준비"]
 },
 {
-  id:"dolo", cls:"r-dolo", flag:"🏔️", name:"이탈리아 돌로미티", hemisphere:"N",
+  id:"dolo", cls:"r-dolo", flag:"🏔️", name:"이탈리아 돌로미티", currency:"EUR", hemisphere:"N",
   summary:"뾰족한 석회암 봉우리와 초원, 산장(리푸지오) 문화. 여름엔 하이킹, 겨울엔 스키 명소예요.",
   monthly:[2,2,2,1,1,4,5,4,4,2,1,2],
   season:["스키 시즌","스키 시즌","늦은 스키 시즌","해빙기, 리프트 대부분 휴업","비수기, 산장 대부분 휴업","하이킹 시즌 시작, 고지대엔 잔설","하이킹 성수기","최성수기, 가장 붐비고 비쌈","초중순 쾌적, 하순부터 리프트·산장 순차 종료","가을 단풍, 시설 대부분 휴업","비수기","스키 시즌 시작"],
@@ -400,7 +404,7 @@ const REGIONS = [
       ],
       tips:["9월에 간다면 첫 2주를 노리세요. 리프트와 산장 운영이 가장 넉넉해요.","산장 점심은 현금만 받는 곳도 있으니 유로 현금을 조금 챙기세요.","인기 명소는 아침 8시 전에 도착하면 주차와 사진 모두 수월해요.","뇌우를 피하려면 고지대 트레킹은 오전에 마치세요."],
       compare:{
-        cost:{ value:"1인 약 400~650만원 (8월은 더 비쌈)", level:"mid", src:["estimate"], estimate:true },
+        cost:{ amount:[2700,4400], note:"8월은 더 비쌈", level:"mid", src:["estimate","fx-hana"], estimate:true },
         drive:{ value:"좁은 고갯길, 성수기 정체·주차난, 유료 도로", level:"mid", src:["estimate"], estimate:true },
         trek:{ value:"케이블카 덕분에 쉬운 코스가 많음. 트레 치메 순환은 중급", level:"good", src:["estimate"], estimate:true },
         lodging:{ value:"8월은 매우 어려움. 3~4개월 전 예약 권장", level:"mid", src:["estimate"], estimate:true }
@@ -413,7 +417,7 @@ const REGIONS = [
       ],
       tips:["10월엔 카레차 호수처럼 도로변에서 볼 수 있는 명소 위주로 일정을 짜세요."],
       compare:{
-        cost:{ value:"1인 약 300~500만원", level:"good", src:["estimate"], estimate:true },
+        cost:{ amount:[2000,3400], level:"good", src:["estimate","fx-hana"], estimate:true },
         drive:{ value:"한산하지만 고갯길 일부 통제·결빙 가능", level:"mid", src:["estimate"], estimate:true },
         trek:{ value:"리프트 휴업으로 고지대 접근 어려움", level:"warn", src:["estimate"], estimate:true },
         lodging:{ value:"휴업이 많지만 영업하는 곳은 여유", level:"good", src:["estimate"], estimate:true }
@@ -426,7 +430,7 @@ const REGIONS = [
       ],
       tips:["알페 디 시우시는 겨울에도 설원 산책을 할 수 있어요."],
       compare:{
-        cost:{ value:"1인 약 450~700만원", level:"warn", src:["estimate"], estimate:true },
+        cost:{ amount:[3000,4700], level:"warn", src:["estimate","fx-hana"], estimate:true },
         drive:{ value:"눈길·결빙, 겨울 타이어 또는 체인 필수", level:"warn", src:["estimate"], estimate:true },
         trek:{ value:"트레킹 대신 스키·설원 산책", level:"warn", src:["estimate"], estimate:true },
         lodging:{ value:"연말·2월 성수기엔 어려움", level:"mid", src:["estimate"], estimate:true }
@@ -434,6 +438,14 @@ const REGIONS = [
   ],
   checklist:["ETIAS 시행 여부 확인 (출발 3개월 전)","트레 치메 유료 도로 예약 (auronzo.info)","브라이에스 호수 진입 예약 (7/1~9/15 방문 시)","렌터카 예약 (국제운전면허증 필수)","코르티나·발 가르데나 숙소 예약","케이블카 운영 종료일 확인"]
 }];
+
+// 환율: 경비는 현지 통화로 저장하고 원화는 아래 환율로 계산해 표시한다
+const FX = {
+  asOf:"2026-11-12~16",
+  krw:{ CAD:960, NZD:740, EUR:1480 },
+  note:"USD/KRW 1,337원(하나은행 2026-11-12) 기준. EUR은 하나은행 재정환율(1,483원), CAD는 USD/CAD 1.397(XE, 11-04), NZD는 NZD/USD 0.5527(중간 시세, 11-16)로 환산 후 반올림",
+  src:["fx-hana","fx-xe","fx-nzd"]
+};
 
 const COMPARE_ROWS = [
   { key:"season", label:"해당 시즌" },
@@ -531,8 +543,26 @@ const COMPARE_ROWS = [
       cons: season.cons.map(tag).concat(region.cons.map(plain)),
       cautions: season.cautions.map(c => Object.assign({ seasonal: true }, c)).concat(region.cautions),
       tips: season.tips.map(tag).concat(region.tips.map(plain)),
-      compare: Object.assign({}, region.compare, season.compare)
+      compare: withCostText(Object.assign({}, region.compare, season.compare), region.currency, FX)
     };
+  }
+  function comma(n) {
+    return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+  // 현지 통화 금액 → "1인 약 CAD 4,700~7,300 (약 451~701만원)"
+  function formatCost(cost, currency, fx) {
+    const rate = fx.krw[currency];
+    const man = x => comma(Math.round(x * rate / 10000));
+    return "1인 약 " + currency + " " + comma(cost.amount[0]) + "~" + comma(cost.amount[1]) +
+      " (약 " + man(cost.amount[0]) + "~" + man(cost.amount[1]) + "만원)" + (cost.note ? " · " + cost.note : "");
+  }
+  function withCostText(compare, currency, fx) {
+    if (compare.cost && compare.cost.amount) compare.cost = Object.assign({}, compare.cost, { value: formatCost(compare.cost, currency, fx) });
+    return compare;
+  }
+  function renderFx(fx, sources) {
+    return "환율 기준 (" + esc(fx.asOf) + "): " + Object.keys(fx.krw).map(k => "1 " + k + " ≈ " + comma(fx.krw[k]) + "원").join(" · ") +
+      cite(fx.src, sources) + "<br>" + esc(fx.note) + ". 경비는 현지 통화 기준 추정값이고, 원화는 이 환율로 계산했어요.";
   }
   function seasonBadge(item, season) {
     return item.seasonal ? '<span class="badge b-season">' + esc(season.label) + "</span>" : "";
@@ -625,7 +655,7 @@ const COMPARE_ROWS = [
     };
   }
 
-  const App = { MONTHS, esc, clampMonth, parseHash, buildHash, stars, cite, badges, weatherFor, seasonOf, monthsLabel, viewFor, renderSummary, renderTabs, renderPanel, renderCompare, renderHeatmap, renderChecklists, renderSources, makeStore };
+  const App = { MONTHS, esc, clampMonth, parseHash, buildHash, stars, cite, badges, weatherFor, seasonOf, monthsLabel, viewFor, formatCost, renderFx, renderSummary, renderTabs, renderPanel, renderCompare, renderHeatmap, renderChecklists, renderSources, makeStore };
   root.TravelApp = App;
 
   if (typeof document === "undefined") return;
@@ -644,6 +674,7 @@ const COMPARE_ROWS = [
   $("month").innerHTML = MONTHS.map((m, i) => '<option value="' + (i + 1) + '">' + m + "</option>").join("");
   $("checked-at").textContent = "정보 확인일: " + CHECKED;
   $("source-list").innerHTML = renderSources(SOURCES);
+  $("fx-note").innerHTML = renderFx(FX, SOURCES);
 
   function render() {
     $("month").value = String(state.month);
