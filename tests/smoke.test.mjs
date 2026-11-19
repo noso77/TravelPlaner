@@ -47,7 +47,7 @@ for (const width of [360, 1280]) {
     assert.equal(r.cards, 3);
     assert.ok(r.spots >= 4);
     assert.equal(r.heatCells, 36);
-    assert.equal(r.compareRows, 7);
+    assert.equal(r.compareRows, 8);
     assert.ok(r.sources > 10);
   });
 }

@@ -45,7 +45,8 @@ test("모든 출처에 확인일이 있고, URL은 https다 (추정 항목 제�
 
 test("유의사항·비교값·날씨가 모두 존재하는 출처를 참조한다", () => {
   for (const r of REGIONS) {
-    const items = [...r.cautions, ...Object.values(r.compare), r.weatherSep];
+    const items = [...r.cautions, ...Object.values(r.compare), r.weatherSep,
+      ...r.seasons.flatMap(se => [...se.cautions, ...Object.values(se.compare)])];
     for (const it of items) {
       assert.ok(it.src && it.src.length, `${r.id}: 출처 없음 → ${it.text || it.value}`);
       for (const id of it.src) assert.ok(srcIds.has(id), `${r.id}: 없는 출처 ${id}`);
@@ -55,7 +56,7 @@ test("유의사항·비교값·날씨가 모두 존재하는 출처를 참조한
 });
 
 test("출처끼리 값이 다른 항목에 conflict 표시가 있다 (브라이에스·IVL·ETIAS)", () => {
-  const find = (rid, kw) => REGIONS.find(r => r.id === rid).cautions.find(c => c.text.includes(kw));
+  const find = (rid, kw) => { const r = REGIONS.find(x => x.id === rid); return [...r.cautions, ...r.seasons.flatMap(se => se.cautions)].find(c => c.text.includes(kw)); };
   assert.equal(find("dolo", "브라이에스").conflict, true);
   assert.equal(find("nz", "MBIE").conflict, true);
   assert.equal(find("dolo", "ETIAS").conflict, true);
@@ -92,10 +93,10 @@ test("URL 해시: 정상 값을 읽고 쓰며, 잘못된 값은 기본값(9월·
   assert.deepEqual({ ...App.parseHash(h, REGIONS) }, { month: 11, tab: "dolo" });
 });
 
-test("비교표: 7개 행, 월을 바꾸면 날씨와 성수기 값이 바뀐다", () => {
+test("비교표: 8개 행, 월을 바꾸면 날씨와 성수기 값이 바뀐다", () => {
   const sep = App.renderCompare(REGIONS, 9, COMPARE_ROWS, SOURCES);
   const jan = App.renderCompare(REGIONS, 1, COMPARE_ROWS, SOURCES);
-  assert.equal((sep.match(/<tr><th scope="row">/g) || []).length, 7);
+  assert.equal((sep.match(/<tr><th scope="row">/g) || []).length, 8);
   assert.notEqual(sep, jan);
   assert.ok(sep.includes("9월 기준") && jan.includes("1월 기준"));
   assert.ok(sep.includes("낮 13~18°C"), "9월엔 수집한 기온을 표시");
@@ -176,4 +177,66 @@ test("테마: 라이트/다크 토큰이 모두 정의되어 있다", () => {
   assert.ok(html.includes(':root:not([data-theme="light"])'));
   assert.ok(html.includes(':root[data-theme="dark"]'));
   assert.match(html, /body\{[^}]*background:var\(--bg\)/);
+});
+
+test("계절 구분: 지역마다 1~12월이 정확히 한 계절에 속한다", () => {
+  for (const r of REGIONS) {
+    // vm 컨텍스트에서 만든 배열이라 spread로 현재 realm 배열로 바꿔 비교한다
+    const all = [...r.seasons.flatMap(se => [...se.months])].sort((a, b) => a - b);
+    assert.deepEqual(all, [1,2,3,4,5,6,7,8,9,10,11,12], r.id);
+    for (const se of r.seasons) {
+      assert.ok(se.id && se.label, r.id);
+      for (const k of ["cost", "drive", "trek", "lodging"]) assert.ok(se.compare[k], `${r.id}.${se.id}.compare.${k}`);
+      assert.ok(se.pros.length && se.cons.length && se.tips.length, `${r.id}.${se.id}`);
+    }
+    assert.ok(r.compare.flight, `${r.id}: 항공은 연중 공통`);
+  }
+});
+
+test("계절 구분: 월 범위 라벨 (연도를 넘는 구간 포함)", () => {
+  assert.equal(App.monthsLabel([6,7,8,9]), "6~9월");
+  assert.equal(App.monthsLabel([4,5,10]), "4~5·10월");
+  assert.equal(App.monthsLabel([11,12,1,2,3]), "11~3월");
+  assert.equal(App.monthsLabel([12,1,2]), "12~2월");
+  assert.equal(App.monthsLabel([9]), "9월");
+});
+
+test("계절 구분: 연중 공통 항목에는 특정 월 표현이 없다", () => {
+  const monthWord = /\d{1,2}월/;
+  for (const r of REGIONS) {
+    for (const t of [r.summary, ...r.pros, ...r.cons, ...r.tips, ...r.cautions.map(c => c.text)]) {
+      assert.ok(!monthWord.test(t), `${r.id} 공통 항목에 월 표현: ${t}`);
+    }
+  }
+});
+
+test("계절 구분: 월을 바꾸면 경비·숙소·장단점·유의사항이 계절에 맞게 바뀐다", () => {
+  const banff = REGIONS.find(r => r.id === "banff");
+  const jul = App.viewFor(banff, 7), jan = App.viewFor(banff, 1);
+  assert.equal(jul.season.id, "summer");
+  assert.equal(jan.season.id, "winter");
+  assert.notEqual(jul.compare.cost.value, jan.compare.cost.value);
+  assert.notEqual(jul.compare.lodging.value, jan.compare.lodging.value);
+  assert.ok(jul.cautions.some(c => c.text.includes("셔틀 예약")));
+  assert.ok(!jan.cautions.some(c => c.text.includes("셔틀 예약")));
+  assert.equal(jan.compare.flight.value, jul.compare.flight.value, "항공은 계절과 무관");
+
+  const nz = REGIONS.find(r => r.id === "nz");
+  assert.equal(App.seasonOf(nz, 1).id, "summer", "남반구 1월 = 여름");
+  assert.equal(App.seasonOf(nz, 7).id, "winter", "남반구 7월 = 겨울");
+
+  const dolo = REGIONS.find(r => r.id === "dolo");
+  const dJan = App.renderPanel(dolo, 1, SOURCES), dSep = App.renderPanel(dolo, 9, SOURCES);
+  assert.ok(dSep.includes("브라이에스") && !dJan.includes("브라이에스 호수는 7/1"), "여름 예약제 안내는 겨울에 안 나옴");
+  assert.ok(dJan.includes("겨울 스키 시즌 (12~3월)"));
+  assert.ok(dJan.includes("b-season"), "계절 항목에 계절 배지");
+  assert.ok(dJan.includes("ETIAS"), "공통 항목은 계절과 무관하게 표시");
+});
+
+test("계절 구분: 비교표에 해당 시즌 행이 있고 월에 따라 바뀐다", () => {
+  const jan = App.renderCompare(REGIONS, 1, COMPARE_ROWS, SOURCES);
+  const jul = App.renderCompare(REGIONS, 7, COMPARE_ROWS, SOURCES);
+  assert.ok(jan.includes("해당 시즌"));
+  assert.ok(jan.includes("여름 성수기 (12~2월)") && jan.includes("겨울 스키 시즌 (11~3월)"));
+  assert.ok(jul.includes("겨울 스키 시즌 (6~8월)") && jul.includes("여름 성수기 (6~9월)"));
 });

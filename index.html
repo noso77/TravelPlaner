@@ -82,6 +82,7 @@ ul.clean li{margin:2px 0}
 .b-conflict{background:var(--warn-bg);color:var(--warn)}
 .b-estimate{background:var(--surface-2);color:var(--muted)}
 .b-official{background:var(--good-bg);color:var(--good)}
+.b-season{background:var(--surface-2);color:var(--rc,var(--accent));border-color:var(--rc,var(--border))}
 .caution{background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--rc);border-radius:10px;padding:10px 12px;margin:8px 0}
 .caution .cat{font-size:.78rem;font-weight:700;color:var(--rc);margin-right:6px}
 .checked{font-size:.75rem;color:var(--muted);white-space:nowrap}
@@ -220,30 +221,69 @@ const REGIONS = [
     { name:"말린 호수 · 스피릿 아일랜드", desc:"재스퍼의 대표 풍경. 스피릿 아일랜드는 보트 크루즈로 가요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/4/49/Spirit_Island%2C_Maligne_Lake%2C_Jasper_NP.jpg/960px-Spirit_Island%2C_Maligne_Lake%2C_Jasper_NP.jpg", page:"https://commons.wikimedia.org/wiki/File:Spirit_Island,_Maligne_Lake,_Jasper_NP.jpg", credit:"Christian Abend", license:"CC BY-SA 2.0" },
     { name:"밴프 타운", desc:"캐스케이드산이 보이는 거점 마을. 곤돌라, 온천, 식당이 모여 있어요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5f/Cascade_Mountain_Banff_Avenue.jpg/960px-Cascade_Mountain_Banff_Avenue.jpg", page:"https://commons.wikimedia.org/wiki/File:Cascade_Mountain_Banff_Avenue.jpg", credit:"Adam Bishop", license:"CC BY-SA 4.0" }
   ],
-  pros:["인천→캘거리 직항 (약 10.5시간)","도로가 넓고 운전이 쉬움 (우측통행)","주차장 근처에서 볼 수 있는 명소가 많아 트레킹 부담이 적음","9월 중순~말 라치 단풍 시즌"],
-  cons:["성수기 숙박비가 매우 비싸고 일찍 마감","인기 명소는 셔틀 예약 경쟁 (모레인 호수)","곰 등 야생동물 대비 필요","9월 말부터 첫눈과 일부 시설 휴업 가능"],
+  pros:["인천→캘거리 직항 (약 10.5시간)","도로가 넓고 운전이 쉬움 (우측통행)","주차장 근처에서 볼 수 있는 명소가 많아 트레킹 부담이 적음"],
+  cons:["곰 등 야생동물 대비 필요","국립공원 입장 패스 비용 추가","인기 명소는 연중 개인 차량 제한 (모레인 호수)"],
   cautions:[
     { cat:"입국", text:"캐나다 전자여행허가(eTA)를 출국 전에 온라인으로 신청하세요. 반드시 정부 공식 사이트에서 신청해야 해요.", src:["estimate"], estimate:true },
-    { cat:"예약", text:"모레인 호수 도로는 연중 개인 차량 통행 금지예요. 셔틀(6/1~10/12경)이나 투어로만 갈 수 있어요.", src:["pc-louise"] },
-    { cat:"예약", text:"셔틀 예약은 4월 중순에 열려요. 2026년엔 첫날에만 약 4만 건이 몰렸으니 오픈 날 바로 예약하세요.", src:["banffguide"] },
+    { cat:"예약", text:"모레인 호수 도로는 연중 개인 차량 통행 금지예요. 셔틀이나 투어로만 갈 수 있어요.", src:["pc-louise"] },
     { cat:"예약", text:"국립공원 입장 패스(일일권 또는 연간 디스커버리 패스)가 필요해요. 3명이 7일 넘게 머문다면 연간 패스가 유리할 수 있어요.", src:["pc-pass"] },
     { cat:"안전", text:"곰 서식지예요. 베어 스프레이를 갖고 다니고, 소리를 내며 걷고, 음식은 차 안에 보관하세요.", src:["pc-bear"] },
-    { cat:"시즌", text:"9월 날씨는 출처마다 차이가 커요. 낮 13~18°C, 밤 0~4°C 정도이고, 늦은 9월엔 고갯길에 눈이 올 수 있어요.", src:["banffbound","pc-weather"], conflict:true },
     { cat:"시즌", text:"재스퍼는 2024년 산불 피해를 입었어요. 일부 트레일과 시설의 운영 여부를 확인하세요.", src:["estimate"], estimate:true }
   ],
-  tips:["모레인 호수 일출은 첫 셔틀이나 이른 시간 투어를 노리세요.","아이스필드 파크웨이에는 주유소가 거의 없어요. 출발 전에 기름을 가득 채우세요.","숙소는 밴프보다 캔모어가 조금 저렴한 편이에요.","라치 단풍은 라치 밸리 트레일(모레인 호수 출발)이 유명해요. 9월 중순이 절정이에요."],
+  tips:["아이스필드 파크웨이에는 주유소가 거의 없어요. 출발 전에 기름을 가득 채우세요.","숙소는 밴프보다 캔모어가 조금 저렴한 편이에요."],
   compare:{
-    flight:{ value:"인천→캘거리 직항 약 10.5시간 + 밴프까지 차로 1.5시간", level:"good", src:["fc-yyc"] },
-    cost:{ value:"1인 약 450~700만원", level:"warn", src:["estimate"], estimate:true },
-    drive:{ value:"우측통행, 넓은 도로. 야생동물 출몰 주의", level:"good", src:["estimate"], estimate:true },
-    trek:{ value:"주차장 근처 명소가 많음. 중급 코스(라치 밸리 등)도 다양", level:"good", src:["estimate"], estimate:true },
-    lodging:{ value:"성수기엔 매우 비싸고 일찍 마감. 6개월 전 예약 권장", level:"warn", src:["estimate"], estimate:true }
+    flight:{ value:"인천→캘거리 직항 약 10.5시간 + 밴프까지 차로 1.5시간", level:"good", src:["fc-yyc"] }
   },
+  seasons:[
+    { id:"summer", label:"여름 성수기", months:[6,7,8,9],
+      pros:["호수가 모두 녹아 청록색이 가장 선명함","대부분의 트레일·셔틀·크루즈 운영","9월 중순~말 라치(낙엽송) 단풍"],
+      cons:["숙박비가 1년 중 가장 비싸고 일찍 마감","모레인 호수 셔틀 예약 경쟁이 치열함","7~8월엔 산불 연기로 시야가 흐려질 수 있음","9월 말엔 고갯길에 첫눈 가능"],
+      cautions:[
+        { cat:"예약", text:"모레인 호수 셔틀은 6/1~10/12경 운행해요.", src:["pc-louise"] },
+        { cat:"예약", text:"셔틀 예약은 4월 중순에 열려요. 2026년엔 첫날에만 약 4만 건이 몰렸으니 오픈 날 바로 예약하세요.", src:["banffguide"] },
+        { cat:"시즌", text:"9월 날씨는 출처마다 차이가 커요. 낮 13~18°C, 밤 0~4°C 정도이고, 늦은 9월엔 고갯길에 눈이 올 수 있어요.", src:["banffbound","pc-weather"], conflict:true },
+        { cat:"시즌", text:"7~8월은 산불 연기로 시야가 흐리거나 일부 지역이 통제될 수 있어요. 출발 직전에 공원 공지를 확인하세요.", src:["estimate"], estimate:true }
+      ],
+      tips:["모레인 호수 일출은 첫 셔틀이나 이른 시간 투어를 노리세요.","라치 단풍은 라치 밸리 트레일(모레인 호수 출발)이 유명해요. 9월 중순이 절정이에요.","말린 호수 크루즈도 성수기엔 미리 예약하세요."],
+      compare:{
+        cost:{ value:"1인 약 450~700만원", level:"warn", src:["estimate"], estimate:true },
+        drive:{ value:"넓은 도로, 성수기 주차난. 야생동물 출몰 주의", level:"good", src:["estimate"], estimate:true },
+        trek:{ value:"모든 트레일 개방. 쉬운 코스부터 중급(라치 밸리)까지 다양", level:"good", src:["estimate"], estimate:true },
+        lodging:{ value:"매우 비싸고 일찍 마감. 6개월 전 예약 권장", level:"warn", src:["estimate"], estimate:true }
+      } },
+    { id:"shoulder", label:"봄·가을 준성수기", months:[4,5,10],
+      pros:["숙박비가 성수기보다 저렴함","관광객이 적어 한산함"],
+      cons:["4~5월엔 호수가 얼어 있거나 녹는 중","10월 중순 이후 셔틀 종료·시설 휴업","트레일에 눈과 진흙"],
+      cautions:[
+        { cat:"시즌", text:"모레인 호수 셔틀은 10/12경 끝나요. 이후엔 도로가 닫혀 개인적으로 가기 어려워요.", src:["pc-louise"] },
+        { cat:"운전", text:"고갯길에 눈이 올 수 있어요. 겨울 타이어를 장착한 렌터카를 권장해요.", src:["estimate"], estimate:true }
+      ],
+      tips:["10월 초는 단풍 끝물과 한산함을 함께 누릴 수 있어요.","호수 색을 보려면 6월 이후가 안전해요."],
+      compare:{
+        cost:{ value:"1인 약 350~550만원", level:"mid", src:["estimate"], estimate:true },
+        drive:{ value:"눈·결빙 가능, 겨울 타이어 권장", level:"mid", src:["estimate"], estimate:true },
+        trek:{ value:"저지대 위주. 고지대 트레일은 눈", level:"mid", src:["estimate"], estimate:true },
+        lodging:{ value:"구하기 쉽고 가격도 무난", level:"good", src:["estimate"], estimate:true }
+      } },
+    { id:"winter", label:"겨울 스키 시즌", months:[11,12,1,2,3],
+      pros:["밴프 선샤인·레이크 루이스 스키장","얼어붙은 호수 위 스케이트와 온천"],
+      cons:["−15°C 안팎의 혹한, 해가 짧음","호수가 얼고 눈에 덮여 청록색을 볼 수 없음","대부분의 하이킹 트레일 이용 불가"],
+      cautions:[
+        { cat:"운전", text:"아이스필드 파크웨이는 겨울에 통제가 잦고 휴대폰이 안 터지는 구간이 길어요. 겨울 타이어는 필수예요.", src:["estimate"], estimate:true }
+      ],
+      tips:["레이크 루이스 호수 위 아이스 스케이트가 겨울 명물이에요.","밴프 어퍼 온천에서 설경을 보며 몸을 녹이세요."],
+      compare:{
+        cost:{ value:"1인 약 350~600만원 (연말·스키 성수기는 더 비쌈)", level:"mid", src:["estimate"], estimate:true },
+        drive:{ value:"눈길·결빙, 겨울 타이어 필수, 도로 통제 잦음", level:"warn", src:["estimate"], estimate:true },
+        trek:{ value:"트레킹 대신 스노슈잉·스키", level:"warn", src:["estimate"], estimate:true },
+        lodging:{ value:"연말·주말 외엔 여유", level:"good", src:["estimate"], estimate:true }
+      } }
+  ],
   checklist:["캐나다 eTA 신청 (공식 사이트)","Parks Canada 입장 패스 구매","모레인 호수·레이크 루이스 셔틀 예약 (4월 중순 오픈)","렌터카 예약 (캘거리 공항 픽업)","밴프·재스퍼·캔모어 숙소 예약","베어 스프레이 현지 구매 (항공기 반입 불가)","말린 호수 크루즈 예약"]
 },
 {
   id:"nz", cls:"r-nz", flag:"🥝", name:"뉴질랜드 남섬", hemisphere:"S",
-  summary:"피오르드, 빙하, 별빛 호수까지 풍경이 다양해요. 남반구라 9월은 초봄이고 쌀쌀해요.",
+  summary:"피오르드, 빙하, 별빛 호수까지 풍경이 다양해요. 남반구라 한국과 계절이 반대예요.",
   monthly:[5,5,5,4,2,2,2,2,2,3,4,4],
   season:["한여름 성수기, 해가 김","한여름, 날씨 가장 안정적","늦여름·초가을, 추천 시기","가을 단풍 (애로우타운)","늦가을, 쌀쌀함","초겨울, 스키 시즌","한겨울, 산간 도로 결빙","한겨울, 스키 시즌","초봄, 쌀쌀하고 날씨가 자주 바뀜, 비수기","봄, 루핀 개화 전, 날씨 회복","늦봄, 루핀 꽃 시즌","초여름, 성수기 시작"],
   weatherSep:{ text:"퀸스타운 기준 낮 8~13°C / 밤 0~3°C, 비 오는 날 11~14일", src:["w2t-qt"], conflict:true },
@@ -256,29 +296,76 @@ const REGIONS = [
     { name:"테카포 호수", desc:"선한 목자의 교회와 밤하늘 보호구역. 별 보기 명소예요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/6/62/Church_of_the_Good_Shepherd%2C_Lake_Tekapo%2C_New_Zealand_03.jpg/960px-Church_of_the_Good_Shepherd%2C_Lake_Tekapo%2C_New_Zealand_03.jpg", page:"https://commons.wikimedia.org/wiki/File:Church_of_the_Good_Shepherd,_Lake_Tekapo,_New_Zealand_03.jpg", credit:"Michal Klajban", license:"CC BY-SA 4.0" },
     { name:"프란츠 요제프 빙하", desc:"서해안 빙하. 전망 트랙이나 헬기 투어로 볼 수 있어요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c4/Franz_Josef_Glacier_14.jpg/960px-Franz_Josef_Glacier_14.jpg", page:"https://commons.wikimedia.org/wiki/File:Franz_Josef_Glacier_14.jpg", credit:"Krzysztof Golik", license:"CC BY-SA 4.0" }
   ],
-  pros:["풍경이 가장 다양함 (피오르드, 빙하, 호수, 별)","9월은 비수기라 숙박이 상대적으로 저렴하고 한산함","평탄하고 쉬운 트랙이 많음","치안이 좋고 영어 사용"],
-  cons:["9월은 초봄이라 춥고 비가 잦음 (산간 도로에 눈 가능)","좌측통행에 1차선 다리, 구불구불한 도로","입국 비용 추가 (NZeTA와 IVL, 1인 약 NZD 117~123)","명소 간 이동 거리가 길어 운전 시간이 많음"],
+  pros:["풍경이 가장 다양함 (피오르드, 빙하, 호수, 별)","평탄하고 쉬운 트랙이 많음","치안이 좋고 영어 사용"],
+  cons:["좌측통행에 1차선 다리, 구불구불한 도로","입국 비용 추가 (NZeTA와 IVL, 1인 약 NZD 117~123)","명소 간 이동 거리가 길어 운전 시간이 많음"],
   cautions:[
     { cat:"입국", text:"NZeTA(앱 NZD 17 / 웹 NZD 23)와 관광세 IVL(NZD 100)을 함께 내야 해서 1인 약 NZD 117~123이에요. IVL은 환불되지 않아요.", src:["inz","ivl-2026"] },
     { cat:"입국", text:"정부 페이지(MBIE)에는 아직 예전 IVL 금액(NZD 35)이 남아 있어요. 최신 금액은 Immigration NZ에서 확인하세요.", src:["mbie-ivl","ivl-2026"], conflict:true },
-    { cat:"운전", text:"좌측통행이고 1차선 다리(양보 표지)가 많아요. 운전 시간을 넉넉히 잡으세요.", src:["drivesafe"] },
-    { cat:"운전", text:"밀포드 로드(호머 터널 구간)는 겨울과 봄에 눈사태 위험으로 통제될 수 있고, 체인을 갖고 다녀야 할 수 있어요.", src:["estimate"], estimate:true },
-    { cat:"예약", text:"밀포드 트랙(4일 그레이트 워크)은 성수기(대략 10월 말~4월)에만 예약할 수 있어요. 9월은 비수기라 대신 당일 크루즈를 추천해요.", src:["doc-milford"], estimate:true },
-    { cat:"시즌", text:"9월 퀸스타운은 낮 8~13°C, 밤 0~3°C 정도예요(출처마다 차이). 비 오는 날이 많아 방수 옷을 챙기세요.", src:["w2t-qt"], conflict:true }
+    { cat:"운전", text:"좌측통행이고 1차선 다리(양보 표지)가 많아요. 운전 시간을 넉넉히 잡으세요.", src:["drivesafe"] }
   ],
-  tips:["NZeTA는 앱으로 신청하면 웹보다 NZD 6 저렴해요.","밀포드 사운드는 비 오는 날 폭포가 더 장관이에요. 날씨에 실망하지 마세요.","테카포 별 보기는 달이 없는 날로 일정을 잡으세요.","렌터카는 퀸스타운에서 타고 크라이스트처치에서 반납하는 편도 일정도 많이 써요 (편도 반납 요금 확인)."],
+  tips:["NZeTA는 앱으로 신청하면 웹보다 NZD 6 저렴해요.","테카포 별 보기는 달이 없는 날로 일정을 잡으세요.","렌터카는 퀸스타운에서 타고 크라이스트처치에서 반납하는 편도 일정도 많이 써요 (편도 반납 요금 확인)."],
   compare:{
-    flight:{ value:"인천→오클랜드 직항 약 11시간 + 국내선 약 2시간 (경유 총 14~16시간)", level:"mid", src:["estimate"], estimate:true },
-    cost:{ value:"1인 약 350~550만원 (9월 비수기)", level:"good", src:["estimate"], estimate:true },
-    drive:{ value:"좌측통행, 1차선 다리, 구불구불한 산길, 장거리 운전", level:"warn", src:["drivesafe"] },
-    trek:{ value:"후커 밸리 등 평탄한 트랙이 많지만 9월엔 일부 고산 트랙에 눈", level:"mid", src:["estimate"], estimate:true },
-    lodging:{ value:"9월 비수기라 구하기 쉽고 가격도 무난", level:"good", src:["estimate"], estimate:true }
+    flight:{ value:"인천→오클랜드 직항 약 11시간 + 국내선 약 2시간 (경유 총 14~16시간)", level:"mid", src:["estimate"], estimate:true }
   },
+  seasons:[
+    { id:"summer", label:"여름 성수기", months:[12,1,2],
+      pros:["해가 길고(밤 9시 넘어까지 밝음) 날씨가 가장 안정적","모든 트랙과 투어 운영"],
+      cons:["숙박·렌터카가 가장 비싸고 일찍 마감","인기 명소 주차장 혼잡"],
+      cautions:[
+        { cat:"예약", text:"밀포드 트랙(4일 그레이트 워크)은 시즌(대략 10월 말~4월) 예약이 열리자마자 마감돼요.", src:["doc-milford"] }
+      ],
+      tips:["샌드플라이(모래파리) 기피제를 꼭 챙기세요.","연말연시는 현지인 휴가철이라 숙소를 특히 일찍 잡으세요."],
+      compare:{
+        cost:{ value:"1인 약 450~650만원", level:"warn", src:["estimate"], estimate:true },
+        drive:{ value:"도로 상태는 좋지만 캠퍼밴이 많고 좌측통행", level:"mid", src:["drivesafe","estimate"], estimate:true },
+        trek:{ value:"모든 트랙 개방, 쉬운 코스 많음", level:"good", src:["estimate"], estimate:true },
+        lodging:{ value:"비싸고 일찍 마감. 4~6개월 전 예약 권장", level:"warn", src:["estimate"], estimate:true }
+      } },
+    { id:"autumn", label:"가을", months:[3,4,5],
+      pros:["날씨가 비교적 안정적이고 여름보다 한산함","애로우타운 단풍 (4월)"],
+      cons:["5월부터 쌀쌀하고 해가 짧아짐"],
+      cautions:[],
+      tips:["3월은 여름 날씨에 가격은 조금 내려가서 가장 추천하는 시기예요."],
+      compare:{
+        cost:{ value:"1인 약 400~600만원", level:"mid", src:["estimate"], estimate:true },
+        drive:{ value:"좌측통행, 5월엔 산간 아침 결빙 가능", level:"mid", src:["drivesafe","estimate"], estimate:true },
+        trek:{ value:"대부분 트랙 개방", level:"good", src:["estimate"], estimate:true },
+        lodging:{ value:"3월은 아직 붐비고, 4~5월은 여유", level:"mid", src:["estimate"], estimate:true }
+      } },
+    { id:"winter", label:"겨울 스키 시즌", months:[6,7,8],
+      pros:["퀸스타운·와나카 스키장","눈 덮인 남알프스 풍경"],
+      cons:["산간 도로 결빙, 밀포드 로드 통제 잦음","해가 짧음 (오후 5시 전후 일몰)"],
+      cautions:[
+        { cat:"운전", text:"밀포드 로드(호머 터널 구간)는 눈사태 위험으로 통제될 수 있고, 체인을 갖고 다녀야 할 수 있어요.", src:["estimate"], estimate:true }
+      ],
+      tips:["7월 방학철엔 퀸스타운이 스키 관광객으로 붐벼요."],
+      compare:{
+        cost:{ value:"1인 약 400~600만원", level:"mid", src:["estimate"], estimate:true },
+        drive:{ value:"결빙·눈길, 체인 필요 구간, 좌측통행", level:"warn", src:["drivesafe","estimate"], estimate:true },
+        trek:{ value:"저지대 트랙만 무난. 고산 트랙은 눈", level:"mid", src:["estimate"], estimate:true },
+        lodging:{ value:"스키 거점(퀸스타운)은 붐비고 그 외는 여유", level:"mid", src:["estimate"], estimate:true }
+      } },
+    { id:"spring", label:"봄 비수기", months:[9,10,11],
+      pros:["9~10월은 비수기라 숙박이 저렴하고 한산함","11월 루핀 꽃 시즌 (테카포)"],
+      cons:["9월은 춥고 비가 잦으며 날씨가 자주 바뀜","고산 트랙엔 아직 눈"],
+      cautions:[
+        { cat:"시즌", text:"9월 퀸스타운은 낮 8~13°C, 밤 0~3°C 정도예요(출처마다 차이). 비 오는 날이 많아 방수 옷을 챙기세요.", src:["w2t-qt"], conflict:true },
+        { cat:"운전", text:"밀포드 로드(호머 터널 구간)는 봄에도 눈사태 위험으로 통제될 수 있어요.", src:["estimate"], estimate:true },
+        { cat:"예약", text:"밀포드 트랙 시즌(대략 10월 말~)이 시작되기 전이라 9~10월 초엔 당일 크루즈를 추천해요.", src:["doc-milford"], estimate:true }
+      ],
+      tips:["밀포드 사운드는 비 오는 날 폭포가 더 장관이에요. 날씨에 실망하지 마세요.","루핀은 11월 말 테카포 호숫가가 유명해요."],
+      compare:{
+        cost:{ value:"1인 약 350~550만원", level:"good", src:["estimate"], estimate:true },
+        drive:{ value:"좌측통행, 산간 도로에 눈 가능", level:"mid", src:["drivesafe","estimate"], estimate:true },
+        trek:{ value:"평탄한 트랙은 무난, 일부 고산 트랙에 눈", level:"mid", src:["estimate"], estimate:true },
+        lodging:{ value:"구하기 쉽고 가격도 무난", level:"good", src:["estimate"], estimate:true }
+      } }
+  ],
   checklist:["NZeTA와 IVL 결제 (앱 권장)","렌터카 예약 (편도 반납 여부 확인)","밀포드 사운드 크루즈 예약","퀸스타운·와나카·테카포·마운트 쿡 숙소 예약","국제운전면허증 발급","방수 재킷과 보온 레이어 준비"]
 },
 {
   id:"dolo", cls:"r-dolo", flag:"🏔️", name:"이탈리아 돌로미티", hemisphere:"N",
-  summary:"뾰족한 석회암 봉우리와 초원, 산장(리푸지오) 문화. 9월 초중순이 성수기 끝 무렵이에요.",
+  summary:"뾰족한 석회암 봉우리와 초원, 산장(리푸지오) 문화. 여름엔 하이킹, 겨울엔 스키 명소예요.",
   monthly:[2,2,2,1,1,4,5,4,4,2,1,2],
   season:["스키 시즌","스키 시즌","늦은 스키 시즌","해빙기, 리프트 대부분 휴업","비수기, 산장 대부분 휴업","하이킹 시즌 시작, 고지대엔 잔설","하이킹 성수기","최성수기, 가장 붐비고 비쌈","초중순 쾌적, 하순부터 리프트·산장 순차 종료","가을 단풍, 시설 대부분 휴업","비수기","스키 시즌 시작"],
   weatherSep:{ text:"코르티나 기준 낮 13~16°C / 밤 5~6°C, 오후 소나기 가능", src:["wanderlog-cortina"], conflict:true },
@@ -291,28 +378,65 @@ const REGIONS = [
     { name:"카레차 호수", desc:"라테마르산이 비치는 작은 호수. 도로 옆이라 접근이 쉬워요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3a/Lago_di_Carezza_and_Latemar%2C_Carezza%2C_Trentino-Alto_Adige%2C_Italy%2C_2025_October.jpg/960px-Lago_di_Carezza_and_Latemar%2C_Carezza%2C_Trentino-Alto_Adige%2C_Italy%2C_2025_October.jpg", page:"https://commons.wikimedia.org/wiki/File:Lago_di_Carezza_and_Latemar,_Carezza,_Trentino-Alto_Adige,_Italy,_2025_October.jpg", credit:"Ximonic (Simo Räsänen)", license:"CC BY-SA 4.0" },
     { name:"코르티나 담페초", desc:"동부 돌로미티의 거점 마을. 2026 동계올림픽 개최지예요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/3/36/Faloria_Cortina_d%27Ampezzo_10.jpg/960px-Faloria_Cortina_d%27Ampezzo_10.jpg", page:"https://commons.wikimedia.org/wiki/File:Faloria_Cortina_d%27Ampezzo_10.jpg", credit:"kallerna", license:"CC BY-SA 4.0" }
   ],
-  pros:["케이블카로 쉽게 고지대 풍경에 닿을 수 있음","산장(리푸지오)에서 식사하는 독특한 경험","9월 초중순엔 날씨가 쾌적하고 8월보다 한산함","베네치아 등 이탈리아 도시 여행과 묶기 좋음"],
-  cons:["한국에서 직항이 없음 (유럽 경유 후 차로 2~3시간)","산악 도로가 좁고 고갯길 굽이가 많음","인기 명소의 도로 요금·예약제가 계속 바뀜","9월 하순부터 리프트와 산장이 순차 종료"],
+  pros:["케이블카로 쉽게 고지대 풍경에 닿을 수 있음","산장(리푸지오)에서 식사하는 독특한 경험","베네치아 등 이탈리아 도시 여행과 묶기 좋음"],
+  cons:["한국에서 직항이 없음 (유럽 경유 후 차로 2~3시간)","산악 도로가 좁고 고갯길 굽이가 많음"],
   cautions:[
     { cat:"입국", text:"한국 여권은 솅겐 지역 90일 무비자예요. 유럽 전자여행허가(ETIAS)는 아직 시행 전이고, 2027년 시행이 예상되지만 공식 날짜는 미정이에요.", src:["etias-eu","etias-btn"], conflict:true },
-    { cat:"예약", text:"트레 치메 유료 도로는 예약이 필요해요. 승용차 약 €40이에요.", src:["auronzo","mfe-dolo","kk-dolo"] },
-    { cat:"예약", text:"브라이에스 호수는 7/1~9/15 낮 시간대에 차량 진입이 예약제예요. 시작 시각이 출처마다 9:00, 9:30으로 달라요.", src:["prags","kk-dolo"], conflict:true },
-    { cat:"예약", text:"세체다의 €5 개찰구는 개인 토지주가 받는 비공식 요금이에요. 관광청에 따르면 납부는 선택이에요.", src:["euronews-seceda"] },
-    { cat:"운전", text:"도시 중심부의 차량 제한구역(ZTL)에 들어가면 카메라로 단속되고 벌금이 나중에 청구돼요. 내비게이션만 믿지 마세요.", src:["estimate"], estimate:true },
-    { cat:"시즌", text:"리프트는 9월 셋째 주 무렵(코르티나 약 9/20)부터 순차 종료돼요. 알타 바디아는 10월 초까지 운영하기도 해요.", src:["moonhoney"] }
+    { cat:"운전", text:"도시 중심부의 차량 제한구역(ZTL)에 들어가면 카메라로 단속되고 벌금이 나중에 청구돼요. 내비게이션만 믿지 마세요.", src:["estimate"], estimate:true }
   ],
-  tips:["9월에 간다면 첫 2주를 노리세요. 리프트와 산장 운영이 가장 넉넉해요.","거점은 동쪽(코르티나)과 서쪽(오르티세이/발 가르데나) 두 곳으로 나누면 이동이 줄어요.","산장 점심은 현금만 받는 곳도 있으니 유로 현금을 조금 챙기세요.","인기 명소는 아침 8시 전에 도착하면 주차와 사진 모두 수월해요."],
+  tips:["거점은 동쪽(코르티나)과 서쪽(오르티세이/발 가르데나) 두 곳으로 나누면 이동이 줄어요."],
   compare:{
-    flight:{ value:"직항 없음. 인천→유럽(뮌헨·로마 등) 12~14시간 + 차량 2~4시간 (총 16~20시간)", level:"warn", src:["estimate"], estimate:true },
-    cost:{ value:"1인 약 400~650만원", level:"mid", src:["estimate"], estimate:true },
-    drive:{ value:"우측통행이지만 좁은 산악 고갯길, ZTL, 유료 도로", level:"mid", src:["estimate"], estimate:true },
-    trek:{ value:"케이블카 덕분에 쉬운 코스가 많음. 트레 치메 순환은 중급", level:"good", src:["estimate"], estimate:true },
-    lodging:{ value:"9월 초중순엔 여전히 수요가 많음. 3~4개월 전 예약 권장", level:"mid", src:["estimate"], estimate:true }
+    flight:{ value:"직항 없음. 인천→유럽(뮌헨·로마 등) 12~14시간 + 차량 2~4시간 (총 16~20시간)", level:"warn", src:["estimate"], estimate:true }
   },
-  checklist:["ETIAS 시행 여부 확인 (출발 3개월 전)","트레 치메 유료 도로 예약 (auronzo.info)","브라이에스 호수 진입 예약 (9/15 이전 방문 시)","렌터카 예약 (국제운전면허증 필수)","코르티나·발 가르데나 숙소 예약","케이블카 운영 종료일 확인"]
+  seasons:[
+    { id:"summer", label:"여름 하이킹 시즌", months:[6,7,8,9],
+      pros:["케이블카와 산장 대부분 운영","초원과 야생화 (6~7월)","9월 초중순은 날씨가 쾌적하고 8월보다 한산함"],
+      cons:["8월 최성수기는 가장 붐비고 비쌈","인기 명소의 도로 요금·예약제가 계속 바뀜","9월 하순부터 리프트와 산장이 순차 종료","오후 소나기·뇌우가 잦음"],
+      cautions:[
+        { cat:"예약", text:"트레 치메 유료 도로는 예약이 필요해요. 승용차 약 €40이에요.", src:["auronzo","mfe-dolo","kk-dolo"] },
+        { cat:"예약", text:"브라이에스 호수는 7/1~9/15 낮 시간대에 차량 진입이 예약제예요. 시작 시각이 출처마다 9:00, 9:30으로 달라요.", src:["prags","kk-dolo"], conflict:true },
+        { cat:"예약", text:"세체다의 €5 개찰구는 개인 토지주가 받는 비공식 요금이에요. 관광청에 따르면 납부는 선택이에요.", src:["euronews-seceda"] },
+        { cat:"시즌", text:"리프트는 9월 셋째 주 무렵(코르티나 약 9/20)부터 순차 종료돼요. 알타 바디아는 10월 초까지 운영하기도 해요.", src:["moonhoney"] }
+      ],
+      tips:["9월에 간다면 첫 2주를 노리세요. 리프트와 산장 운영이 가장 넉넉해요.","산장 점심은 현금만 받는 곳도 있으니 유로 현금을 조금 챙기세요.","인기 명소는 아침 8시 전에 도착하면 주차와 사진 모두 수월해요.","뇌우를 피하려면 고지대 트레킹은 오전에 마치세요."],
+      compare:{
+        cost:{ value:"1인 약 400~650만원 (8월은 더 비쌈)", level:"mid", src:["estimate"], estimate:true },
+        drive:{ value:"좁은 고갯길, 성수기 정체·주차난, 유료 도로", level:"mid", src:["estimate"], estimate:true },
+        trek:{ value:"케이블카 덕분에 쉬운 코스가 많음. 트레 치메 순환은 중급", level:"good", src:["estimate"], estimate:true },
+        lodging:{ value:"8월은 매우 어려움. 3~4개월 전 예약 권장", level:"mid", src:["estimate"], estimate:true }
+      } },
+    { id:"off", label:"봄·가을 비수기", months:[4,5,10,11],
+      pros:["숙박이 가장 저렴하고 한산함","10월 낙엽송 단풍"],
+      cons:["케이블카·산장 대부분 휴업","문을 닫는 호텔·식당이 많음"],
+      cautions:[
+        { cat:"시즌", text:"리프트와 산장 대부분이 쉬는 시기라 고지대 접근이 어려워요. 운영 일정을 꼭 확인하세요.", src:["estimate"], estimate:true }
+      ],
+      tips:["10월엔 카레차 호수처럼 도로변에서 볼 수 있는 명소 위주로 일정을 짜세요."],
+      compare:{
+        cost:{ value:"1인 약 300~500만원", level:"good", src:["estimate"], estimate:true },
+        drive:{ value:"한산하지만 고갯길 일부 통제·결빙 가능", level:"mid", src:["estimate"], estimate:true },
+        trek:{ value:"리프트 휴업으로 고지대 접근 어려움", level:"warn", src:["estimate"], estimate:true },
+        lodging:{ value:"휴업이 많지만 영업하는 곳은 여유", level:"good", src:["estimate"], estimate:true }
+      } },
+    { id:"winter", label:"겨울 스키 시즌", months:[12,1,2,3],
+      pros:["세계적인 스키 지역 (돌로미티 슈퍼스키)","눈 덮인 봉우리와 산장 풍경"],
+      cons:["하이킹 명소 대부분이 눈으로 접근 불가","스키 시즌 숙박이 비쌈"],
+      cautions:[
+        { cat:"운전", text:"겨울 타이어나 체인 휴대가 의무인 구간이 많아요.", src:["estimate"], estimate:true }
+      ],
+      tips:["알페 디 시우시는 겨울에도 설원 산책을 할 수 있어요."],
+      compare:{
+        cost:{ value:"1인 약 450~700만원", level:"warn", src:["estimate"], estimate:true },
+        drive:{ value:"눈길·결빙, 겨울 타이어 또는 체인 필수", level:"warn", src:["estimate"], estimate:true },
+        trek:{ value:"트레킹 대신 스키·설원 산책", level:"warn", src:["estimate"], estimate:true },
+        lodging:{ value:"연말·2월 성수기엔 어려움", level:"mid", src:["estimate"], estimate:true }
+      } }
+  ],
+  checklist:["ETIAS 시행 여부 확인 (출발 3개월 전)","트레 치메 유료 도로 예약 (auronzo.info)","브라이에스 호수 진입 예약 (7/1~9/15 방문 시)","렌터카 예약 (국제운전면허증 필수)","코르티나·발 가르데나 숙소 예약","케이블카 운영 종료일 확인"]
 }];
 
 const COMPARE_ROWS = [
+  { key:"season", label:"해당 시즌" },
   { key:"flight", label:"비행·이동" },
   { key:"cost", label:"예상 경비 (1인)" },
   { key:"weather", label:"선택 월 날씨" },
@@ -379,6 +503,40 @@ const COMPARE_ROWS = [
     const r = region.monthly[month - 1];
     return r >= 4 ? "good" : r === 3 ? "mid" : "warn";
   }
+  function seasonOf(region, month) {
+    return region.seasons.find(s => s.months.includes(month));
+  }
+  // [6,7,8,9] → "6~9월", [4,5,10] → "4~5·10월", [11,12,1,2,3] → "11~3월" (연도를 넘는 구간 포함)
+  function monthsLabel(months) {
+    const set = new Set(months);
+    const starts = months.filter(m => !set.has(m === 1 ? 12 : m - 1)).sort((a, b) => a - b);
+    if (!starts.length) return "연중";
+    return starts.map(s => {
+      let e = s;
+      while (set.has(e === 12 ? 1 : e + 1) && (e === 12 ? 1 : e + 1) !== s) e = e === 12 ? 1 : e + 1;
+      return e === s ? String(s) : s + "~" + e;
+    }).join("·") + "월";
+  }
+  function seasonTitle(season) {
+    return season.label + " (" + monthsLabel(season.months) + ")";
+  }
+  // 연중 공통 항목 + 선택한 월이 속한 계절 항목을 합친다. 계절 항목을 앞에 둔다.
+  function viewFor(region, month) {
+    const season = seasonOf(region, month);
+    const tag = t => ({ text: t, seasonal: true });
+    const plain = t => ({ text: t, seasonal: false });
+    return {
+      season,
+      pros: season.pros.map(tag).concat(region.pros.map(plain)),
+      cons: season.cons.map(tag).concat(region.cons.map(plain)),
+      cautions: season.cautions.map(c => Object.assign({ seasonal: true }, c)).concat(region.cautions),
+      tips: season.tips.map(tag).concat(region.tips.map(plain)),
+      compare: Object.assign({}, region.compare, season.compare)
+    };
+  }
+  function seasonBadge(item, season) {
+    return item.seasonal ? '<span class="badge b-season">' + esc(season.label) + "</span>" : "";
+  }
   function extLink(url, text) {
     return '<a href="' + esc(url) + '" target="_blank" rel="noopener noreferrer">' + esc(text) + "</a>";
   }
@@ -391,13 +549,15 @@ const COMPARE_ROWS = [
   function renderSummary(regions, month, sources) {
     return regions.map(r => {
       const w = weatherFor(r, month);
+      const v = viewFor(r, month);
       return '<article class="card ' + r.cls + '"><div class="region-bar"></div>' + photo(r.spots[0]) +
         '<div class="body"><h3>' + r.flag + " " + esc(r.name) + "</h3>" +
         "<div>" + stars(r.monthly[month - 1]) + ' <span class="checked">' + MONTHS[month - 1] + " 추천도</span></div>" +
+        '<p class="wx">📅 ' + esc(seasonTitle(v.season)) + "</p>" +
         "<p>" + esc(r.summary) + "</p>" +
         '<p class="wx">🌤 ' + esc(w.text) + cite(w.src, sources) + "</p>" +
-        '<ul class="clean">' + r.pros.slice(0, 2).map(p => '<li class="pro">' + esc(p) + "</li>").join("") +
-        r.cons.slice(0, 2).map(c => '<li class="con">' + esc(c) + "</li>").join("") + "</ul></div></article>";
+        '<ul class="clean">' + v.pros.slice(0, 2).map(p => '<li class="pro">' + esc(p.text) + "</li>").join("") +
+        v.cons.slice(0, 2).map(c => '<li class="con">' + esc(c.text) + "</li>").join("") + "</ul></div></article>";
     }).join("");
   }
   function renderTabs(regions, active) {
@@ -405,14 +565,19 @@ const COMPARE_ROWS = [
   }
   function renderPanel(region, month, sources) {
     const spots = '<div class="grid3">' + region.spots.map(s => '<article class="card ' + region.cls + '">' + photo(s) + '<div class="body"><h3>' + esc(s.name) + "</h3><p>" + esc(s.desc) + "</p></div></article>").join("") + "</div>";
-    const pc = '<div class="grid3" style="margin-top:6px"><div class="card"><div class="body"><h3>장점</h3><ul class="clean">' + region.pros.map(p => '<li class="pro">' + esc(p) + "</li>").join("") +
-      '</ul></div></div><div class="card"><div class="body"><h3>단점</h3><ul class="clean">' + region.cons.map(p => '<li class="con">' + esc(p) + "</li>").join("") + "</ul></div></div>" +
-      '<div class="card"><div class="body"><h3>' + MONTHS[month - 1] + " 시즌</h3><p>" + stars(region.monthly[month - 1]) + "</p><p>" + esc(region.season[month - 1]) + "</p>" +
+    const v = viewFor(region, month);
+    const s = v.season;
+    const li = (cls, x) => '<li class="' + cls + '">' + esc(x.text) + seasonBadge(x, s) + "</li>";
+    const pc = '<div class="grid3" style="margin-top:6px"><div class="card"><div class="body"><h3>장점</h3><ul class="clean">' + v.pros.map(p => li("pro", p)).join("") +
+      '</ul></div></div><div class="card"><div class="body"><h3>단점</h3><ul class="clean">' + v.cons.map(p => li("con", p)).join("") + "</ul></div></div>" +
+      '<div class="card"><div class="body"><h3>' + MONTHS[month - 1] + " 시즌</h3><p>" + stars(region.monthly[month - 1]) + "</p>" +
+      "<p><strong>" + esc(seasonTitle(s)) + "</strong><br>" + esc(region.season[month - 1]) + "</p>" +
       (region.hemisphere === "S" ? '<p class="checked">남반구: 한국과 계절이 반대예요.</p>' : "") + "</div></div></div>";
-    const cautions = region.cautions.map(c => '<div class="caution"><span class="cat">' + esc(c.cat) + "</span>" + esc(c.text) + cite(c.src, sources) + badges(c, sources) +
+    const cautions = v.cautions.map(c => '<div class="caution"><span class="cat">' + esc(c.cat) + "</span>" + esc(c.text) + cite(c.src, sources) + badges(c, sources) + seasonBadge(c, s) +
       ' <span class="checked">확인 ' + esc(CHECKED_AT(sources, c.src)) + "</span></div>").join("");
-    const tips = '<ul class="clean">' + region.tips.map(t => "<li>💡 " + esc(t) + "</li>").join("") + "</ul>";
-    return '<div class="' + region.cls + '"><h3>주요 명소</h3>' + spots + "<h3>장단점</h3>" + pc + "<h3>유의할 점</h3>" + cautions + "<h3>현지 팁</h3>" + tips + "</div>";
+    const tips = '<ul class="clean">' + v.tips.map(t => "<li>💡 " + esc(t.text) + seasonBadge(t, s) + "</li>").join("") + "</ul>";
+    const note = '<p class="legend" style="margin-top:0"><span class="badge b-season" style="margin-left:0">' + esc(s.label) + "</span> 표시는 " + esc(seasonTitle(s)) + "에만 해당하는 내용이고, 표시가 없는 항목은 연중 공통이에요.</p>";
+    return '<div class="' + region.cls + '"><h3>주요 명소</h3>' + spots + "<h3>장단점</h3>" + note + pc + "<h3>유의할 점</h3>" + cautions + "<h3>현지 팁</h3>" + tips + "</div>";
   }
   function CHECKED_AT(sources, ids) {
     const s = sources.find(x => (ids || []).includes(x.id));
@@ -427,7 +592,9 @@ const COMPARE_ROWS = [
       const p = PEAK[region.peak[month - 1]];
       return level(p.level, p.label);
     }
-    const c = region.compare[key];
+    const v = viewFor(region, month);
+    if (key === "season") return "<strong>" + esc(seasonTitle(v.season)) + "</strong>";
+    const c = v.compare[key];
     return level(c.level, c.value) + cite(c.src, sources) + badges(c, sources);
   }
   function renderCompare(regions, month, rows, sources) {
@@ -458,7 +625,7 @@ const COMPARE_ROWS = [
     };
   }
 
-  const App = { MONTHS, esc, clampMonth, parseHash, buildHash, stars, cite, badges, weatherFor, renderSummary, renderTabs, renderPanel, renderCompare, renderHeatmap, renderChecklists, renderSources, makeStore };
+  const App = { MONTHS, esc, clampMonth, parseHash, buildHash, stars, cite, badges, weatherFor, seasonOf, monthsLabel, viewFor, renderSummary, renderTabs, renderPanel, renderCompare, renderHeatmap, renderChecklists, renderSources, makeStore };
   root.TravelApp = App;
 
   if (typeof document === "undefined") return;
