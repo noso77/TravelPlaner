@@ -263,3 +263,42 @@ test("계절 구분: 비교표에 해당 시즌 행이 있고 월에 따라 바�
   assert.ok(jan.includes("여름 성수기 (12~2월)") && jan.includes("겨울 스키 시즌 (11~3월)"));
   assert.ok(jul.includes("겨울 스키 시즌 (6~8월)") && jul.includes("여름 성수기 (6~9월)"));
 });
+
+test('계절 사진: 월·반구에 맞는 계절 사진이 선택되고, 없으면 기본 사진 + 안내', () => {
+  assert.equal(App.photoKind(1, 'N'), 'winter');
+  assert.equal(App.photoKind(4, 'N'), 'spring');
+  assert.equal(App.photoKind(7, 'N'), 'summer');
+  assert.equal(App.photoKind(10, 'N'), 'autumn');
+  assert.equal(App.photoKind(1, 'S'), 'summer', '남반구 1월 = 여름');
+  assert.equal(App.photoKind(7, 'S'), 'winter', '남반구 7월 = 겨울');
+  assert.equal(App.photoKind(10, 'S'), 'spring');
+  const louise = REGIONS[0].spots[0];
+  const jan = App.photoFor(louise, 1, 'N'), jul = App.photoFor(louise, 7, 'N');
+  assert.notEqual(jan.img, jul.img, '겨울과 여름 사진이 다름');
+  assert.equal(jul.img, louise.img, 'default 표시는 기본 사진 사용');
+  assert.equal(jan.fallback, false);
+  const maligne = REGIONS[0].spots.find(s => s.name.includes('말린'));
+  const mw = App.photoFor(maligne, 1, 'N');
+  assert.equal(mw.fallback, true, '말린 호수 겨울 사진 없음');
+  assert.equal(mw.img, maligne.img);
+  const panel = App.renderPanel(REGIONS[0], 1, SOURCES);
+  assert.ok(panel.includes('사진 없음 · 기본 사진'));
+  assert.ok(panel.includes('❄️ 겨울'));
+});
+
+test('계절 사진: 모든 사진에 작성자·라이선스·원본 링크가 있고 계절 4개 중 3개 이상 갖춘다', () => {
+  for (const r of REGIONS) for (const s of r.spots) {
+    const kinds = Object.keys(s.photos);
+    assert.ok(kinds.length >= 3, s.name + ': ' + kinds);
+    for (const k of kinds) {
+      assert.ok(['spring','summer','autumn','winter'].includes(k));
+      const p = s.photos[k];
+      if (p === 'default') continue;
+      assert.match(p.img, /^https:\/\/(upload|thumb)\.wikimedia\.org\//, s.name + k);
+      assert.match(p.page, /^https:\/\/commons\.wikimedia\.org\/wiki\/File:/);
+      assert.ok(p.credit && !/Feel fre/.test(p.credit), s.name + k + ' credit');
+      assert.match(p.license, /^(CC BY|CC0|Public domain)/);
+      assert.match(p.date, /^\d{4}-\d{2}$/);
+    }
+  }
+});

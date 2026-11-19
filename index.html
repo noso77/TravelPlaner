@@ -218,12 +218,35 @@ const REGIONS = [
   weatherSep:{ text:"낮 13~18°C / 밤 0~4°C, 늦은 9월엔 첫눈 가능", src:["banffbound","pc-weather"], conflict:true },
   peak:["off","off","off","off","shoulder","peak","peak","peak","peak","shoulder","off","off"],
   spots:[
-    { name:"레이크 루이스", desc:"빅토리아 빙하를 배경으로 한 대표 빙하호. 주차가 어려워 셔틀이 편해요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6c/1_lake_louise_pano_2019.jpg/960px-1_lake_louise_pano_2019.jpg", page:"https://commons.wikimedia.org/wiki/File:1_lake_louise_pano_2019.jpg", credit:"Chensiyuan", license:"CC BY-SA 4.0" },
-    { name:"모레인 호수", desc:"텐 피크스 계곡의 청록색 호수. 개인 차량 금지, 셔틀이나 투어로만 갈 수 있어요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f6/Lake_Moraine-Banff_National_Park.jpg/960px-Lake_Moraine-Banff_National_Park.jpg", page:"https://commons.wikimedia.org/wiki/File:Lake_Moraine-Banff_National_Park.jpg", credit:"Florian Fuchs", license:"CC BY 3.0" },
-    { name:"아이스필드 파크웨이 (보우 호수)", desc:"레이크 루이스와 재스퍼를 잇는 약 230km 드라이브 길. 중간에 빙하와 호수가 이어져요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/5/51/Bow_Lake_beim_Icefields_Parkway.jpg/960px-Bow_Lake_beim_Icefields_Parkway.jpg", page:"https://commons.wikimedia.org/wiki/File:Bow_Lake_beim_Icefields_Parkway.jpg", credit:"Florian Fuchs", license:"CC BY 3.0" },
-    { name:"페이토 호수", desc:"늑대 머리 모양의 호수를 전망대에서 내려다봐요. 주차장에서 짧게 걸어가면 돼요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/9/91/Peyto_Lake-Banff_NP-Canada.jpg/960px-Peyto_Lake-Banff_NP-Canada.jpg", page:"https://commons.wikimedia.org/wiki/File:Peyto_Lake-Banff_NP-Canada.jpg", credit:"Tobias Alt, Tobi 87", license:"CC BY-SA 4.0" },
-    { name:"말린 호수 · 스피릿 아일랜드", desc:"재스퍼의 대표 풍경. 스피릿 아일랜드는 보트 크루즈로 가요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/4/49/Spirit_Island%2C_Maligne_Lake%2C_Jasper_NP.jpg/960px-Spirit_Island%2C_Maligne_Lake%2C_Jasper_NP.jpg", page:"https://commons.wikimedia.org/wiki/File:Spirit_Island,_Maligne_Lake,_Jasper_NP.jpg", credit:"Christian Abend", license:"CC BY-SA 2.0" },
-    { name:"밴프 타운", desc:"캐스케이드산이 보이는 거점 마을. 곤돌라, 온천, 식당이 모여 있어요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5f/Cascade_Mountain_Banff_Avenue.jpg/960px-Cascade_Mountain_Banff_Avenue.jpg", page:"https://commons.wikimedia.org/wiki/File:Cascade_Mountain_Banff_Avenue.jpg", credit:"Adam Bishop", license:"CC BY-SA 4.0" }
+    { name:"레이크 루이스", desc:"빅토리아 빙하를 배경으로 한 대표 빙하호. 주차가 어려워 셔틀이 편해요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6c/1_lake_louise_pano_2019.jpg/960px-1_lake_louise_pano_2019.jpg", page:"https://commons.wikimedia.org/wiki/File:1_lake_louise_pano_2019.jpg", credit:"Chensiyuan", license:"CC BY-SA 4.0",
+      photos:{ spring:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fb/Lake_Louise%2C_Canada%2C_Banff.jpg/960px-Lake_Louise%2C_Canada%2C_Banff.jpg", page:"https://commons.wikimedia.org/wiki/File:Lake_Louise,_Canada,_Banff.jpg", credit:"Vlunyak", license:"CC0", date:"2024-05" },
+        summer:"default",
+        autumn:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ab/Lake_Louise_-_September_6%2C_2021.jpg/960px-Lake_Louise_-_September_6%2C_2021.jpg", page:"https://commons.wikimedia.org/wiki/File:Lake_Louise_-_September_6,_2021.jpg", credit:"Khoshhat", license:"CC BY-SA 4.0", date:"2021-09" },
+        winter:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a2/Lake_Louise_area_from_Ski_Louise.jpg/960px-Lake_Louise_area_from_Ski_Louise.jpg", page:"https://commons.wikimedia.org/wiki/File:Lake_Louise_area_from_Ski_Louise.jpg", credit:"BrettA343", license:"CC BY-SA 4.0", date:"2013-01" } } },
+    { name:"모레인 호수", desc:"텐 피크스 계곡의 청록색 호수. 개인 차량 금지, 셔틀이나 투어로만 갈 수 있어요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f6/Lake_Moraine-Banff_National_Park.jpg/960px-Lake_Moraine-Banff_National_Park.jpg", page:"https://commons.wikimedia.org/wiki/File:Lake_Moraine-Banff_National_Park.jpg", credit:"Florian Fuchs", license:"CC BY 3.0",
+      photos:{ spring:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/6/65/Moraine_Lake_%28Unsplash%29.jpg/960px-Moraine_Lake_%28Unsplash%29.jpg", page:"https://commons.wikimedia.org/wiki/File:Moraine_Lake_(Unsplash).jpg", credit:"Andreea Chidu achidu", license:"CC0", date:"2017-04" },
+        summer:"default",
+        autumn:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8c/Moraine-Lake-20170929-094728-HDR.jpg/960px-Moraine-Lake-20170929-094728-HDR.jpg", page:"https://commons.wikimedia.org/wiki/File:Moraine-Lake-20170929-094728-HDR.jpg", credit:"Mehrdadjam2020", license:"CC BY-SA 4.0", date:"2017-09" },
+        winter:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/8/81/Moraine_lake_near_lake_louise_in_Canada.jpg/960px-Moraine_lake_near_lake_louise_in_Canada.jpg", page:"https://commons.wikimedia.org/wiki/File:Moraine_lake_near_lake_louise_in_Canada.jpg", credit:"Jon Sullivan", license:"Public domain", date:"2013-02" } } },
+    { name:"아이스필드 파크웨이 (보우 호수)", desc:"레이크 루이스와 재스퍼를 잇는 약 230km 드라이브 길. 중간에 빙하와 호수가 이어져요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/5/51/Bow_Lake_beim_Icefields_Parkway.jpg/960px-Bow_Lake_beim_Icefields_Parkway.jpg", page:"https://commons.wikimedia.org/wiki/File:Bow_Lake_beim_Icefields_Parkway.jpg", credit:"Florian Fuchs", license:"CC BY 3.0",
+      photos:{ spring:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/4/42/Bow-Lake-2019-reflection-Luka-Peternel.jpg/960px-Bow-Lake-2019-reflection-Luka-Peternel.jpg", page:"https://commons.wikimedia.org/wiki/File:Bow-Lake-2019-reflection-Luka-Peternel.jpg", credit:"Luka Peternel", license:"CC BY-SA 4.0", date:"2019-05" },
+        summer:"default",
+        autumn:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a9/Bow_Lake_--_Banff_National_Park_Alberta_September_2019_%2849411618457%29.jpg/960px-Bow_Lake_--_Banff_National_Park_Alberta_September_2019_%2849411618457%29.jpg", page:"https://commons.wikimedia.org/wiki/File:Bow_Lake_--_Banff_National_Park_Alberta_September_2019_(49411618457).jpg", credit:"Ron Cogswell", license:"CC BY 2.0", date:"2019-09" },
+        winter:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/8/81/Bow_Lake_Winter.jpg/960px-Bow_Lake_Winter.jpg", page:"https://commons.wikimedia.org/wiki/File:Bow_Lake_Winter.jpg", credit:"Anthonymaw", license:"CC BY-SA 4.0", date:"2013-03" } } },
+    { name:"페이토 호수", desc:"늑대 머리 모양의 호수를 전망대에서 내려다봐요. 주차장에서 짧게 걸어가면 돼요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/9/91/Peyto_Lake-Banff_NP-Canada.jpg/960px-Peyto_Lake-Banff_NP-Canada.jpg", page:"https://commons.wikimedia.org/wiki/File:Peyto_Lake-Banff_NP-Canada.jpg", credit:"Tobias Alt, Tobi 87", license:"CC BY-SA 4.0",
+      photos:{ spring:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ad/Peyto_Lake%2C_Canada.jpg/960px-Peyto_Lake%2C_Canada.jpg", page:"https://commons.wikimedia.org/wiki/File:Peyto_Lake,_Canada.jpg", credit:"Rotem Avi-Tal", license:"CC0", date:"2016-05" },
+        summer:"default",
+        autumn:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d1/Peyto_Lake_8.jpg/960px-Peyto_Lake_8.jpg", page:"https://commons.wikimedia.org/wiki/File:Peyto_Lake_8.jpg", credit:"Gopi.Perumal", license:"CC BY-SA 4.0", date:"2017-09" },
+        winter:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/4/40/Peyto_Lake_in_winter.jpg/960px-Peyto_Lake_in_winter.jpg", page:"https://commons.wikimedia.org/wiki/File:Peyto_Lake_in_winter.jpg", credit:"Jakub Fryš", license:"CC BY-SA 4.0", date:"2019-01" } } },
+    { name:"말린 호수 · 스피릿 아일랜드", desc:"재스퍼의 대표 풍경. 스피릿 아일랜드는 보트 크루즈로 가요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/4/49/Spirit_Island%2C_Maligne_Lake%2C_Jasper_NP.jpg/960px-Spirit_Island%2C_Maligne_Lake%2C_Jasper_NP.jpg", page:"https://commons.wikimedia.org/wiki/File:Spirit_Island,_Maligne_Lake,_Jasper_NP.jpg", credit:"Christian Abend", license:"CC BY-SA 2.0",
+      photos:{ spring:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9d/Maligne_Lake.JPG/960px-Maligne_Lake.JPG", page:"https://commons.wikimedia.org/wiki/File:Maligne_Lake.JPG", credit:"Wishy", license:"CC BY-SA 3.0", date:"2012-05" },
+        summer:"default",
+        autumn:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a9/Panorama_of_Maligne_Lake.jpg/960px-Panorama_of_Maligne_Lake.jpg", page:"https://commons.wikimedia.org/wiki/File:Panorama_of_Maligne_Lake.jpg", credit:"Fresh.waffles", license:"CC BY-SA 4.0", date:"2018-10" } } },
+    { name:"밴프 타운", desc:"캐스케이드산이 보이는 거점 마을. 곤돌라, 온천, 식당이 모여 있어요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5f/Cascade_Mountain_Banff_Avenue.jpg/960px-Cascade_Mountain_Banff_Avenue.jpg", page:"https://commons.wikimedia.org/wiki/File:Cascade_Mountain_Banff_Avenue.jpg", credit:"Adam Bishop", license:"CC BY-SA 4.0",
+      photos:{ spring:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a7/Banff_Avenue_%282407226120%29.jpg/960px-Banff_Avenue_%282407226120%29.jpg", page:"https://commons.wikimedia.org/wiki/File:Banff_Avenue_(2407226120).jpg", credit:"John Vetterli", license:"CC BY-SA 2.0", date:"2008-04" },
+        summer:"default",
+        autumn:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d5/Banff_Trip_October_2009_%284049313048%29.jpg/960px-Banff_Trip_October_2009_%284049313048%29.jpg", page:"https://commons.wikimedia.org/wiki/File:Banff_Trip_October_2009_(4049313048).jpg", credit:"Mack Male", license:"CC BY-SA 2.0", date:"2009-10" },
+        winter:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Mist_Over_Banff_Avenue_%28Unsplash%29.jpg/960px-Mist_Over_Banff_Avenue_%28Unsplash%29.jpg", page:"https://commons.wikimedia.org/wiki/File:Mist_Over_Banff_Avenue_(Unsplash).jpg", credit:"Tj Holowaychuk tjholowaychuk", license:"CC0", date:"2016-12" } } }
   ],
   pros:["인천→캘거리 직항 (약 10.5시간)","도로가 넓고 운전이 쉬움 (우측통행)","주차장 근처에서 볼 수 있는 명소가 많아 트레킹 부담이 적음"],
   cons:["곰 등 야생동물 대비 필요","국립공원 입장 패스 비용 추가","인기 명소는 연중 개인 차량 제한 (모레인 호수)"],
@@ -293,12 +316,36 @@ const REGIONS = [
   weatherSep:{ text:"퀸스타운 기준 낮 8~13°C / 밤 0~3°C, 비 오는 날 11~14일", src:["w2t-qt"], conflict:true },
   peak:["peak","peak","peak","shoulder","off","off","shoulder","shoulder","off","shoulder","shoulder","peak"],
   spots:[
-    { name:"밀포드 사운드", desc:"마이터 피크가 솟은 피오르드. 크루즈나 경비행기로 둘러봐요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/Milford_Sound_cruising_2016-01-31-6.jpg/960px-Milford_Sound_cruising_2016-01-31-6.jpg", page:"https://commons.wikimedia.org/wiki/File:Milford_Sound_cruising_2016-01-31-6.jpg", credit:"Szilas", license:"Public domain" },
-    { name:"아오라키/마운트 쿡 – 후커 밸리", desc:"뉴질랜드 최고봉을 보며 걷는 왕복 약 3시간의 평탄한 트랙.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9b/Hooker_Valley_walk%2C_Aoraki_%28Mount_Cook%29%2C_New_Zealand.jpg/960px-Hooker_Valley_walk%2C_Aoraki_%28Mount_Cook%29%2C_New_Zealand.jpg", page:"https://commons.wikimedia.org/wiki/File:Hooker_Valley_walk,_Aoraki_(Mount_Cook),_New_Zealand.jpg", credit:"Charlie Mitchell", license:"CC BY-SA 4.0" },
-    { name:"퀸스타운", desc:"와카티푸 호숫가의 액티비티 거점. 곤돌라 전망이 좋아요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cc/Lake_Wakatipu_from_Queenstown_gondola.jpg/960px-Lake_Wakatipu_from_Queenstown_gondola.jpg", page:"https://commons.wikimedia.org/wiki/File:Lake_Wakatipu_from_Queenstown_gondola.jpg", credit:"Avenue", license:"CC BY-SA 3.0" },
-    { name:"와나카 (와나카 트리)", desc:"호수 속 외로운 나무로 유명한 조용한 호반 마을.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3a/That_Wanaka_Tree%2C_New_Zealand.jpg/960px-That_Wanaka_Tree%2C_New_Zealand.jpg", page:"https://commons.wikimedia.org/wiki/File:That_Wanaka_Tree,_New_Zealand.jpg", credit:"Kate Branch", license:"CC BY-SA 4.0" },
-    { name:"테카포 호수", desc:"선한 목자의 교회와 밤하늘 보호구역. 별 보기 명소예요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/6/62/Church_of_the_Good_Shepherd%2C_Lake_Tekapo%2C_New_Zealand_03.jpg/960px-Church_of_the_Good_Shepherd%2C_Lake_Tekapo%2C_New_Zealand_03.jpg", page:"https://commons.wikimedia.org/wiki/File:Church_of_the_Good_Shepherd,_Lake_Tekapo,_New_Zealand_03.jpg", credit:"Michal Klajban", license:"CC BY-SA 4.0" },
-    { name:"프란츠 요제프 빙하", desc:"서해안 빙하. 전망 트랙이나 헬기 투어로 볼 수 있어요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c4/Franz_Josef_Glacier_14.jpg/960px-Franz_Josef_Glacier_14.jpg", page:"https://commons.wikimedia.org/wiki/File:Franz_Josef_Glacier_14.jpg", credit:"Krzysztof Golik", license:"CC BY-SA 4.0" }
+    { name:"밀포드 사운드", desc:"마이터 피크가 솟은 피오르드. 크루즈나 경비행기로 둘러봐요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/Milford_Sound_cruising_2016-01-31-6.jpg/960px-Milford_Sound_cruising_2016-01-31-6.jpg", page:"https://commons.wikimedia.org/wiki/File:Milford_Sound_cruising_2016-01-31-6.jpg", credit:"Szilas", license:"Public domain",
+      photos:{ spring:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/d/da/Milford_Sound_in_Fiordland_National_Park_01.jpg/960px-Milford_Sound_in_Fiordland_National_Park_01.jpg", page:"https://commons.wikimedia.org/wiki/File:Milford_Sound_in_Fiordland_National_Park_01.jpg", credit:"Krzysztof Golik", license:"CC BY-SA 4.0", date:"2017-11" },
+        summer:"default",
+        autumn:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fb/Piopiotahi_%28Milford_Sound%29%2C_wide_view%2C_12_April_2026.jpg/960px-Piopiotahi_%28Milford_Sound%29%2C_wide_view%2C_12_April_2026.jpg", page:"https://commons.wikimedia.org/wiki/File:Piopiotahi_(Milford_Sound),_wide_view,_12_April_2026.jpg", credit:"Danny William Wilson", license:"CC BY-SA 4.0", date:"2026-04" },
+        winter:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3d/Milford_Sound_-_Piopiotahi%2C_Part_I_-_MilfordSound8994.jpg/960px-Milford_Sound_-_Piopiotahi%2C_Part_I_-_MilfordSound8994.jpg", page:"https://commons.wikimedia.org/wiki/File:Milford_Sound_-_Piopiotahi,_Part_I_-_MilfordSound8994.jpg", credit:"lumoplank", license:"CC0", date:"2026-07" } } },
+    { name:"아오라키/마운트 쿡 – 후커 밸리", desc:"뉴질랜드 최고봉을 보며 걷는 왕복 약 3시간의 평탄한 트랙.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9b/Hooker_Valley_walk%2C_Aoraki_%28Mount_Cook%29%2C_New_Zealand.jpg/960px-Hooker_Valley_walk%2C_Aoraki_%28Mount_Cook%29%2C_New_Zealand.jpg", page:"https://commons.wikimedia.org/wiki/File:Hooker_Valley_walk,_Aoraki_(Mount_Cook),_New_Zealand.jpg", credit:"Charlie Mitchell", license:"CC BY-SA 4.0",
+      photos:{ spring:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/5/56/Hooker_Valley_Track%2C_Mount_Cook%2C_New_Zealand.jpg/960px-Hooker_Valley_Track%2C_Mount_Cook%2C_New_Zealand.jpg", page:"https://commons.wikimedia.org/wiki/File:Hooker_Valley_Track,_Mount_Cook,_New_Zealand.jpg", credit:"Bonito Coquito", license:"CC BY-SA 4.0", date:"2016-10" },
+        summer:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fe/NZ_Hooker_Valley_track.jpg/960px-NZ_Hooker_Valley_track.jpg", page:"https://commons.wikimedia.org/wiki/File:NZ_Hooker_Valley_track.jpg", credit:"Jan Helebrant", license:"CC0", date:"2014-02" },
+        autumn:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6d/The_Hooker_Track.jpg/960px-The_Hooker_Track.jpg", page:"https://commons.wikimedia.org/wiki/File:The_Hooker_Track.jpg", credit:"Paul Stewart", license:"CC0", date:"2017-05" },
+        winter:"default" } },
+    { name:"퀸스타운", desc:"와카티푸 호숫가의 액티비티 거점. 곤돌라 전망이 좋아요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cc/Lake_Wakatipu_from_Queenstown_gondola.jpg/960px-Lake_Wakatipu_from_Queenstown_gondola.jpg", page:"https://commons.wikimedia.org/wiki/File:Lake_Wakatipu_from_Queenstown_gondola.jpg", credit:"Avenue", license:"CC BY-SA 3.0",
+      photos:{ spring:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f6/Queenstown_Bay_Lake_Wakatipu_04.jpg/960px-Queenstown_Bay_Lake_Wakatipu_04.jpg", page:"https://commons.wikimedia.org/wiki/File:Queenstown_Bay_Lake_Wakatipu_04.jpg", credit:"Krzysztof Golik", license:"CC BY-SA 4.0", date:"2017-11" },
+        summer:"default",
+        autumn:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d3/Queenstown_and_Lake_Wakatipu.JPG/960px-Queenstown_and_Lake_Wakatipu.JPG", page:"https://commons.wikimedia.org/wiki/File:Queenstown_and_Lake_Wakatipu.JPG", credit:"Floreana at German Wikipedia", license:"Public domain", date:"2012-03" },
+        winter:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e6/Lake_Wakatipu%2C_Queenstown.jpg/960px-Lake_Wakatipu%2C_Queenstown.jpg", page:"https://commons.wikimedia.org/wiki/File:Lake_Wakatipu,_Queenstown.jpg", credit:"Summ23", license:"CC BY 4.0", date:"2022-06" } } },
+    { name:"와나카 (와나카 트리)", desc:"호수 속 외로운 나무로 유명한 조용한 호반 마을.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3a/That_Wanaka_Tree%2C_New_Zealand.jpg/960px-That_Wanaka_Tree%2C_New_Zealand.jpg", page:"https://commons.wikimedia.org/wiki/File:That_Wanaka_Tree,_New_Zealand.jpg", credit:"Kate Branch", license:"CC BY-SA 4.0",
+      photos:{ spring:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/2/25/Lake_Wanaka_19.jpg/960px-Lake_Wanaka_19.jpg", page:"https://commons.wikimedia.org/wiki/File:Lake_Wanaka_19.jpg", credit:"Krzysztof Golik", license:"CC BY-SA 4.0", date:"2017-11" },
+        summer:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4a/Lake_Wanaka_blue.JPG/960px-Lake_Wanaka_blue.JPG", page:"https://commons.wikimedia.org/wiki/File:Lake_Wanaka_blue.JPG", credit:"Stephanie Searle", license:"CC BY-SA 4.0", date:"2009-01" },
+        autumn:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/8/82/Wanaka_tree.jpg/960px-Wanaka_tree.jpg", page:"https://commons.wikimedia.org/wiki/File:Wanaka_tree.jpg", credit:"Jordentan", license:"CC BY-SA 4.0", date:"2019-05" },
+        winter:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/9/94/Lake_Wanaka%2C_NZ_%2852306792702%29.jpg/960px-Lake_Wanaka%2C_NZ_%2852306792702%29.jpg", page:"https://commons.wikimedia.org/wiki/File:Lake_Wanaka,_NZ_(52306792702).jpg", credit:"Rod Waddington", license:"CC BY-SA 2.0", date:"2022-08" } } },
+    { name:"테카포 호수", desc:"선한 목자의 교회와 밤하늘 보호구역. 별 보기 명소예요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/6/62/Church_of_the_Good_Shepherd%2C_Lake_Tekapo%2C_New_Zealand_03.jpg/960px-Church_of_the_Good_Shepherd%2C_Lake_Tekapo%2C_New_Zealand_03.jpg", page:"https://commons.wikimedia.org/wiki/File:Church_of_the_Good_Shepherd,_Lake_Tekapo,_New_Zealand_03.jpg", credit:"Michal Klajban", license:"CC BY-SA 4.0",
+      photos:{ spring:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8c/Panoramic_view_of_Lake_Tekapo_01.jpg/960px-Panoramic_view_of_Lake_Tekapo_01.jpg", page:"https://commons.wikimedia.org/wiki/File:Panoramic_view_of_Lake_Tekapo_01.jpg", credit:"Krzysztof Golik", license:"CC BY-SA 4.0", date:"2017-11" },
+        summer:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4b/Lake_Tekapo%2C_New_Zealand_02.jpg/960px-Lake_Tekapo%2C_New_Zealand_02.jpg", page:"https://commons.wikimedia.org/wiki/File:Lake_Tekapo,_New_Zealand_02.jpg", credit:"Michal Klajban", license:"CC BY-SA 4.0", date:"2020-01" },
+        autumn:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c2/Lake_Tekapo%2C_Canterbury%2C_New_Zealand_01.jpg/960px-Lake_Tekapo%2C_Canterbury%2C_New_Zealand_01.jpg", page:"https://commons.wikimedia.org/wiki/File:Lake_Tekapo,_Canterbury,_New_Zealand_01.jpg", credit:"Michal Klajban", license:"CC BY-SA 4.0", date:"2019-04" },
+        winter:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2c/Lake_Tekapo_-_stillwater.jpg/960px-Lake_Tekapo_-_stillwater.jpg", page:"https://commons.wikimedia.org/wiki/File:Lake_Tekapo_-_stillwater.jpg", credit:"David Palmer", license:"CC BY-SA 4.0", date:"2024-06" } } },
+    { name:"프란츠 요제프 빙하", desc:"서해안 빙하. 전망 트랙이나 헬기 투어로 볼 수 있어요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c4/Franz_Josef_Glacier_14.jpg/960px-Franz_Josef_Glacier_14.jpg", page:"https://commons.wikimedia.org/wiki/File:Franz_Josef_Glacier_14.jpg", credit:"Krzysztof Golik", license:"CC BY-SA 4.0",
+      photos:{ spring:"default",
+        summer:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4e/Franz_Josef_glacier_2012.jpg/960px-Franz_Josef_glacier_2012.jpg", page:"https://commons.wikimedia.org/wiki/File:Franz_Josef_glacier_2012.jpg", credit:"Vaido Otsar", license:"CC BY-SA 4.0", date:"2012-01" },
+        autumn:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cc/Franz_josef_glacier_panorama.jpg/960px-Franz_josef_glacier_panorama.jpg", page:"https://commons.wikimedia.org/wiki/File:Franz_josef_glacier_panorama.jpg", credit:"Tobias Kierk", license:"CC BY 2.5", date:"2007-04" },
+        winter:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a6/Walk_up_the_Franz_Josef_Glacier_Moraine_2012.jpg/960px-Walk_up_the_Franz_Josef_Glacier_Moraine_2012.jpg", page:"https://commons.wikimedia.org/wiki/File:Walk_up_the_Franz_Josef_Glacier_Moraine_2012.jpg", credit:"JWolbers", license:"CC BY-SA 4.0", date:"2012-07" } } }
   ],
   pros:["풍경이 가장 다양함 (피오르드, 빙하, 호수, 별)","평탄하고 쉬운 트랙이 많음","치안이 좋고 영어 사용"],
   cons:["좌측통행에 1차선 다리, 구불구불한 도로","입국 비용 추가 (NZeTA와 IVL, 1인 약 NZD 117~123)","명소 간 이동 거리가 길어 운전 시간이 많음"],
@@ -375,12 +422,33 @@ const REGIONS = [
   weatherSep:{ text:"코르티나 기준 낮 13~16°C / 밤 5~6°C, 오후 소나기 가능", src:["wanderlog-cortina"], conflict:true },
   peak:["peak","peak","shoulder","off","off","shoulder","peak","peak","shoulder","off","off","peak"],
   spots:[
-    { name:"트레 치메 디 라바레도", desc:"세 개의 거대한 암봉을 한 바퀴 도는 약 10km 순환 트레킹.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4e/Drei_Zinnen_Tre_Cime_di_Lavaredo_Dolomites.jpg/960px-Drei_Zinnen_Tre_Cime_di_Lavaredo_Dolomites.jpg", page:"https://commons.wikimedia.org/wiki/File:Drei_Zinnen_Tre_Cime_di_Lavaredo_Dolomites.jpg", credit:"Wolfgang Moroder", license:"CC BY-SA 3.0" },
-    { name:"세체다", desc:"칼날 같은 능선으로 유명해요. 오르티세이에서 케이블카로 올라가요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/Furnadoia_de_Seceda_y_Resciesa.JPG/960px-Furnadoia_de_Seceda_y_Resciesa.JPG", page:"https://commons.wikimedia.org/wiki/File:Furnadoia_de_Seceda_y_Resciesa.JPG", credit:"Wolfgang Moroder", license:"CC BY-SA 3.0" },
-    { name:"브라이에스 호수", desc:"나무 보트가 떠 있는 에메랄드 호수. 한 바퀴 약 1시간이에요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/Lago_di_Braies_South_Tyrol_3.jpg/960px-Lago_di_Braies_South_Tyrol_3.jpg", page:"https://commons.wikimedia.org/wiki/File:Lago_di_Braies_South_Tyrol_3.jpg", credit:"kallerna", license:"CC BY-SA 4.0" },
-    { name:"알페 디 시우시", desc:"유럽 최대 규모의 고원 초원. 가벼운 산책에 좋아요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7f/Seiser_Alm_01.jpg/960px-Seiser_Alm_01.jpg", page:"https://commons.wikimedia.org/wiki/File:Seiser_Alm_01.jpg", credit:"H. Zell", license:"CC BY-SA 3.0" },
-    { name:"카레차 호수", desc:"라테마르산이 비치는 작은 호수. 도로 옆이라 접근이 쉬워요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3a/Lago_di_Carezza_and_Latemar%2C_Carezza%2C_Trentino-Alto_Adige%2C_Italy%2C_2025_October.jpg/960px-Lago_di_Carezza_and_Latemar%2C_Carezza%2C_Trentino-Alto_Adige%2C_Italy%2C_2025_October.jpg", page:"https://commons.wikimedia.org/wiki/File:Lago_di_Carezza_and_Latemar,_Carezza,_Trentino-Alto_Adige,_Italy,_2025_October.jpg", credit:"Ximonic (Simo Räsänen)", license:"CC BY-SA 4.0" },
-    { name:"코르티나 담페초", desc:"동부 돌로미티의 거점 마을. 2026 동계올림픽 개최지예요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/3/36/Faloria_Cortina_d%27Ampezzo_10.jpg/960px-Faloria_Cortina_d%27Ampezzo_10.jpg", page:"https://commons.wikimedia.org/wiki/File:Faloria_Cortina_d%27Ampezzo_10.jpg", credit:"kallerna", license:"CC BY-SA 4.0" }
+    { name:"트레 치메 디 라바레도", desc:"세 개의 거대한 암봉을 한 바퀴 도는 약 10km 순환 트레킹.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4e/Drei_Zinnen_Tre_Cime_di_Lavaredo_Dolomites.jpg/960px-Drei_Zinnen_Tre_Cime_di_Lavaredo_Dolomites.jpg", page:"https://commons.wikimedia.org/wiki/File:Drei_Zinnen_Tre_Cime_di_Lavaredo_Dolomites.jpg", credit:"Wolfgang Moroder", license:"CC BY-SA 3.0",
+      photos:{ spring:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cf/Panoramica_Tre_Cime_di_Lavaredo.jpg/960px-Panoramica_Tre_Cime_di_Lavaredo.jpg", page:"https://commons.wikimedia.org/wiki/File:Panoramica_Tre_Cime_di_Lavaredo.jpg", credit:"Angeloperrone", license:"CC BY-SA 4.0", date:"2017-04" },
+        summer:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/Lavaredo.jpg/960px-Lavaredo.jpg", page:"https://commons.wikimedia.org/wiki/File:Lavaredo.jpg", credit:"sambuco", license:"CC BY-SA 3.0", date:"2018-07" },
+        autumn:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/1/17/Lago_di_Misurina_Tre_Cime_di_Lavaredo_1.jpg/960px-Lago_di_Misurina_Tre_Cime_di_Lavaredo_1.jpg", page:"https://commons.wikimedia.org/wiki/File:Lago_di_Misurina_Tre_Cime_di_Lavaredo_1.jpg", credit:"kallerna", license:"CC BY-SA 4.0", date:"2025-10" },
+        winter:"default" } },
+    { name:"세체다", desc:"칼날 같은 능선으로 유명해요. 오르티세이에서 케이블카로 올라가요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/Furnadoia_de_Seceda_y_Resciesa.JPG/960px-Furnadoia_de_Seceda_y_Resciesa.JPG", page:"https://commons.wikimedia.org/wiki/File:Furnadoia_de_Seceda_y_Resciesa.JPG", credit:"Wolfgang Moroder", license:"CC BY-SA 3.0",
+      photos:{ spring:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/6/67/Urtij%C3%ABi_y_Resciesa_da_Sec%C3%ABda_the_Gherd%C3%ABina.jpg/960px-Urtij%C3%ABi_y_Resciesa_da_Sec%C3%ABda_the_Gherd%C3%ABina.jpg", page:"https://commons.wikimedia.org/wiki/File:Urtij%C3%ABi_y_Resciesa_da_Sec%C3%ABda_the_Gherd%C3%ABina.jpg", credit:"Wolfgang Moroder", license:"CC BY-SA 3.0", date:"2019-04" },
+        summer:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/9/95/Seceda-parco_naturale_puez_odle.jpg/960px-Seceda-parco_naturale_puez_odle.jpg", page:"https://commons.wikimedia.org/wiki/File:Seceda-parco_naturale_puez_odle.jpg", credit:"Jacopo Da Col", license:"CC BY-SA 4.0", date:"2020-08" },
+        autumn:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/8/82/Seceda_2.jpg/960px-Seceda_2.jpg", page:"https://commons.wikimedia.org/wiki/File:Seceda_2.jpg", credit:"Alf.picerno", license:"CC BY-SA 4.0", date:"2023-09" },
+        winter:"default" } },
+    { name:"브라이에스 호수", desc:"나무 보트가 떠 있는 에메랄드 호수. 한 바퀴 약 1시간이에요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/Lago_di_Braies_South_Tyrol_3.jpg/960px-Lago_di_Braies_South_Tyrol_3.jpg", page:"https://commons.wikimedia.org/wiki/File:Lago_di_Braies_South_Tyrol_3.jpg", credit:"kallerna", license:"CC BY-SA 4.0",
+      photos:{ spring:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/2/20/Lago_di_Braies_a_maggio.jpg/960px-Lago_di_Braies_a_maggio.jpg", page:"https://commons.wikimedia.org/wiki/File:Lago_di_Braies_a_maggio.jpg", credit:"Alessandro.Spinello", license:"CC BY-SA 4.0", date:"2018-05" },
+        summer:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/6/63/20050829040DR_Braies_%28I%29_Pragser_Wildsee%2C_Lago_di_Braies.jpg/960px-20050829040DR_Braies_%28I%29_Pragser_Wildsee%2C_Lago_di_Braies.jpg", page:"https://commons.wikimedia.org/wiki/File:20050829040DR_Braies_(I)_Pragser_Wildsee,_Lago_di_Braies.jpg", credit:"Jörg Blobelt", license:"CC BY-SA 4.0", date:"2005-08" },
+        autumn:"default",
+        winter:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/6/68/Lago_di_Braies_%28Italy%29.jpg/960px-Lago_di_Braies_%28Italy%29.jpg", page:"https://commons.wikimedia.org/wiki/File:Lago_di_Braies_(Italy).jpg", credit:"Varvac", license:"CC BY-SA 4.0", date:"2022-02" } } },
+    { name:"알페 디 시우시", desc:"유럽 최대 규모의 고원 초원. 가벼운 산책에 좋아요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7f/Seiser_Alm_01.jpg/960px-Seiser_Alm_01.jpg", page:"https://commons.wikimedia.org/wiki/File:Seiser_Alm_01.jpg", credit:"H. Zell", license:"CC BY-SA 3.0",
+      photos:{ summer:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d9/Saslonch_y_Sela_da_Mont_S%C3%ABuc.jpg/960px-Saslonch_y_Sela_da_Mont_S%C3%ABuc.jpg", page:"https://commons.wikimedia.org/wiki/File:Saslonch_y_Sela_da_Mont_S%C3%ABuc.jpg", credit:"Wolfgang Moroder", license:"CC BY-SA 3.0", date:"2020-08" },
+        autumn:"default",
+        winter:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ea/Auf_der_Seiser_Alm_in_S%C3%BCd_Tirol._01.jpg/960px-Auf_der_Seiser_Alm_in_S%C3%BCd_Tirol._01.jpg", page:"https://commons.wikimedia.org/wiki/File:Auf_der_Seiser_Alm_in_S%C3%BCd_Tirol._01.jpg", credit:"Holger Uwe Schmitt", license:"CC BY-SA 4.0", date:"2019-02" } } },
+    { name:"카레차 호수", desc:"라테마르산이 비치는 작은 호수. 도로 옆이라 접근이 쉬워요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3a/Lago_di_Carezza_and_Latemar%2C_Carezza%2C_Trentino-Alto_Adige%2C_Italy%2C_2025_October.jpg/960px-Lago_di_Carezza_and_Latemar%2C_Carezza%2C_Trentino-Alto_Adige%2C_Italy%2C_2025_October.jpg", page:"https://commons.wikimedia.org/wiki/File:Lago_di_Carezza_and_Latemar,_Carezza,_Trentino-Alto_Adige,_Italy,_2025_October.jpg", credit:"Ximonic (Simo Räsänen)", license:"CC BY-SA 4.0",
+      photos:{ spring:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/2/23/Lago_di_Carezza_panorama.jpg/960px-Lago_di_Carezza_panorama.jpg", page:"https://commons.wikimedia.org/wiki/File:Lago_di_Carezza_panorama.jpg", credit:"User:Incola", license:"Public domain", date:"2007-05" },
+        summer:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/5/54/Karersee_HDR.jpg/960px-Karersee_HDR.jpg", page:"https://commons.wikimedia.org/wiki/File:Karersee_HDR.jpg", credit:"Afrank99", license:"CC BY-SA 3.0", date:"2009-06" },
+        autumn:"default" } },
+    { name:"코르티나 담페초", desc:"동부 돌로미티의 거점 마을. 2026 동계올림픽 개최지예요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/3/36/Faloria_Cortina_d%27Ampezzo_10.jpg/960px-Faloria_Cortina_d%27Ampezzo_10.jpg", page:"https://commons.wikimedia.org/wiki/File:Faloria_Cortina_d%27Ampezzo_10.jpg", credit:"kallerna", license:"CC BY-SA 4.0",
+      photos:{ summer:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6b/Cortina_d%27Ampezzo._2018_%281%29_05.jpg/960px-Cortina_d%27Ampezzo._2018_%281%29_05.jpg", page:"https://commons.wikimedia.org/wiki/File:Cortina_d%27Ampezzo._2018_(1)_05.jpg", credit:"Inga Tomane", license:"CC BY-SA 4.0", date:"2018-08" },
+        autumn:"default",
+        winter:{ img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/0/03/Cortina_d%E2%80%99Ampezzo7.jpg/960px-Cortina_d%E2%80%99Ampezzo7.jpg", page:"https://commons.wikimedia.org/wiki/File:Cortina_d%E2%80%99Ampezzo7.jpg", credit:"Ailita Liteva", license:"CC BY-SA 4.0", date:"2017-02" } } }
   ],
   pros:["케이블카로 쉽게 고지대 풍경에 닿을 수 있음","산장(리푸지오)에서 식사하는 독특한 경험","베네치아 등 이탈리아 도시 여행과 묶기 좋음"],
   cons:["한국에서 직항이 없음 (유럽 경유 후 차로 2~3시간)","산악 도로가 좁고 고갯길 굽이가 많음"],
@@ -570,17 +638,36 @@ const COMPARE_ROWS = [
   function extLink(url, text) {
     return '<a href="' + esc(url) + '" target="_blank" rel="noopener noreferrer">' + esc(text) + "</a>";
   }
-  function photo(spot) {
-    return '<div class="ph"><img loading="lazy" src="' + esc(spot.img) + '" alt="' + esc(spot.name) + ' 풍경 사진" data-fallback="1">' +
-      '<div class="fallback">' + esc(spot.name) + "<br>사진을 불러오지 못했어요 · " + extLink(spot.page, "원본 보기") + "</div></div>" +
-      '<div class="credit">📷 ' + extLink(spot.page, spot.credit) + " · " + esc(spot.license) + "</div>";
+  const PHOTO_KIND = { spring:"🌸 봄", summer:"☀️ 여름", autumn:"🍂 가을", winter:"❄️ 겨울" };
+  // 선택한 월의 계절 (남반구는 6개월 이동): 3~5 봄, 6~8 여름, 9~11 가을, 12~2 겨울
+  function photoKind(month, hemisphere) {
+    const m = hemisphere === "S" ? ((month + 5) % 12) + 1 : month;
+    return m === 12 || m <= 2 ? "winter" : m <= 5 ? "spring" : m <= 8 ? "summer" : "autumn";
+  }
+  // 계절 사진이 있으면 그 사진, "default"면 기본 사진을 그 계절 사진으로, 없으면 기본 사진 + 안내
+  function photoFor(spot, month, hemisphere) {
+    const kind = photoKind(month, hemisphere);
+    const p = spot.photos && spot.photos[kind];
+    const base = { img: spot.img, page: spot.page, credit: spot.credit, license: spot.license };
+    if (p === "default") return Object.assign(base, { kind, fallback: false });
+    if (p) return Object.assign({}, p, { kind, fallback: false });
+    return Object.assign(base, { kind, fallback: true });
+  }
+  function photo(spot, month, hemisphere) {
+    const p = photoFor(spot, month, hemisphere);
+    const tag = p.fallback
+      ? '<span class="badge b-estimate">' + esc(PHOTO_KIND[p.kind]) + " 사진 없음 · 기본 사진</span>"
+      : '<span class="badge b-season">' + esc(PHOTO_KIND[p.kind]) + (p.date ? " · " + esc(p.date) + " 촬영" : "") + "</span>";
+    return '<div class="ph"><img loading="lazy" src="' + esc(p.img) + '" alt="' + esc(spot.name) + " " + esc(PHOTO_KIND[p.kind].split(" ")[1]) + ' 풍경 사진" data-fallback="1" data-kind="' + p.kind + '">' +
+      '<div class="fallback">' + esc(spot.name) + "<br>사진을 불러오지 못했어요 · " + extLink(p.page, "원본 보기") + "</div></div>" +
+      '<div class="credit">📷 ' + extLink(p.page, p.credit) + " · " + esc(p.license) + " " + tag + "</div>";
   }
 
   function renderSummary(regions, month, sources) {
     return regions.map(r => {
       const w = weatherFor(r, month);
       const v = viewFor(r, month);
-      return '<article class="card ' + r.cls + '"><div class="region-bar"></div>' + photo(r.spots[0]) +
+      return '<article class="card ' + r.cls + '"><div class="region-bar"></div>' + photo(r.spots[0], month, r.hemisphere) +
         '<div class="body"><h3>' + r.flag + " " + esc(r.name) + "</h3>" +
         "<div>" + stars(r.monthly[month - 1]) + ' <span class="checked">' + MONTHS[month - 1] + " 추천도</span></div>" +
         '<p class="wx">📅 ' + esc(seasonTitle(v.season)) + "</p>" +
@@ -594,7 +681,7 @@ const COMPARE_ROWS = [
     return regions.map(r => '<button type="button" role="tab" class="tab ' + r.cls + '" data-tab="' + r.id + '" aria-selected="' + (r.id === active) + '">' + r.flag + " " + esc(r.name) + "</button>").join("");
   }
   function renderPanel(region, month, sources) {
-    const spots = '<div class="grid3">' + region.spots.map(s => '<article class="card ' + region.cls + '">' + photo(s) + '<div class="body"><h3>' + esc(s.name) + "</h3><p>" + esc(s.desc) + "</p></div></article>").join("") + "</div>";
+    const spots = '<div class="grid3">' + region.spots.map(s => '<article class="card ' + region.cls + '">' + photo(s, month, region.hemisphere) + '<div class="body"><h3>' + esc(s.name) + "</h3><p>" + esc(s.desc) + "</p></div></article>").join("") + "</div>";
     const v = viewFor(region, month);
     const s = v.season;
     const li = (cls, x) => '<li class="' + cls + '">' + esc(x.text) + seasonBadge(x, s) + "</li>";
@@ -655,7 +742,7 @@ const COMPARE_ROWS = [
     };
   }
 
-  const App = { MONTHS, esc, clampMonth, parseHash, buildHash, stars, cite, badges, weatherFor, seasonOf, monthsLabel, viewFor, formatCost, renderFx, renderSummary, renderTabs, renderPanel, renderCompare, renderHeatmap, renderChecklists, renderSources, makeStore };
+  const App = { MONTHS, esc, clampMonth, parseHash, buildHash, stars, cite, badges, weatherFor, seasonOf, monthsLabel, viewFor, formatCost, renderFx, photoKind, photoFor, renderSummary, renderTabs, renderPanel, renderCompare, renderHeatmap, renderChecklists, renderSources, makeStore };
   root.TravelApp = App;
 
   if (typeof document === "undefined") return;

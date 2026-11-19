@@ -58,10 +58,10 @@ test("URL 해시로 월과 탭을 지정하면 그대로 열린다", { skip: !br
   assert.equal(r.monthLabel, "1월 기준");
 });
 
-test("이미지 링크 18개가 모두 응답한다", { skip: process.env.SKIP_NETWORK === "1" && "SKIP_NETWORK" }, async () => {
+test("이미지 링크(기본·계절 사진)가 모두 응답한다", { skip: process.env.SKIP_NETWORK === "1" && "SKIP_NETWORK" }, async () => {
   const html = readFileSync(new URL("../index.html", import.meta.url), "utf8");
   const urls = [...new Set(html.match(/https:\/\/(?:upload|thumb)\.wikimedia\.org\/[^"]+/g))];
-  assert.equal(urls.length, 18);
+  assert.ok(urls.length >= 70, `이미지 URL ${urls.length}개`); // 기본 18 + 계절 사진
   const bad = [];
   for (const u of urls) {
     let status = 0;
@@ -72,7 +72,7 @@ test("이미지 링크 18개가 모두 응답한다", { skip: process.env.SKIP_N
       await res.arrayBuffer();
     }
     if (status !== 200) bad.push(`${status} ${u}`);
-    await new Promise(r => setTimeout(r, 800));
+    await new Promise(r => setTimeout(r, 600));
   }
   assert.deepEqual(bad, []);
 });
