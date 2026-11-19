@@ -1,0 +1,179 @@
+// 단위 테스트: Node 내장 test runner만 사용 (추가 의존성 없음)
+// 실행: node --test tests/
+import { test } from "node:test";
+import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import vm from "node:vm";
+
+const html = readFileSync(new URL("../index.html", import.meta.url), "utf8");
+const script = id => {
+  const m = html.match(new RegExp(`<script id="${id}">([\\s\\S]*?)</script>`));
+  assert.ok(m, `script#${id} 없음`);
+  return m[1];
+};
+const ctx = vm.createContext({ URLSearchParams });
+vm.runInContext(script("data") + "\n;globalThis.__d={REGIONS,SOURCES,COMPARE_ROWS,CHECKED};", ctx);
+vm.runInContext(script("app"), ctx);
+const { REGIONS, SOURCES, COMPARE_ROWS } = ctx.__d;
+const App = ctx.TravelApp;
+const srcIds = new Set(SOURCES.map(s => s.id));
+const DATE = /^\d{4}-\d{2}-\d{2}$/;
+
+test("후보지 3곳이 모두 있다", () => {
+  assert.deepEqual([...REGIONS.map(r => r.id)], ["banff", "nz", "dolo"]);
+});
+
+test("명소는 지역마다 4~6곳이고, 사진·작성자·라이선스·원본 링크가 있다", () => {
+  for (const r of REGIONS) {
+    assert.ok(r.spots.length >= 4 && r.spots.length <= 6, r.id);
+    for (const s of r.spots) {
+      assert.match(s.img, /^https:\/\/(upload|thumb)\.wikimedia\.org\//, s.name);
+      assert.match(s.page, /^https:\/\/commons\.wikimedia\.org\/wiki\/File:/, s.name);
+      assert.ok(s.credit && s.credit.length > 1, `작성자 누락: ${s.name}`);
+      assert.match(s.license, /^(CC BY|CC0|Public domain)/, s.name);
+    }
+  }
+});
+
+test("모든 출처에 확인일이 있고, URL은 https다 (추정 항목 제외)", () => {
+  for (const s of SOURCES) {
+    assert.match(s.checkedAt, DATE, s.id);
+    assert.equal(typeof s.official, "boolean");
+    if (s.id !== "estimate") assert.match(s.url, /^https:\/\//, s.id);
+  }
+});
+
+test("유의사항·비교값·날씨가 모두 존재하는 출처를 참조한다", () => {
+  for (const r of REGIONS) {
+    const items = [...r.cautions, ...Object.values(r.compare), r.weatherSep];
+    for (const it of items) {
+      assert.ok(it.src && it.src.length, `${r.id}: 출처 없음 → ${it.text || it.value}`);
+      for (const id of it.src) assert.ok(srcIds.has(id), `${r.id}: 없는 출처 ${id}`);
+      if (it.src.includes("estimate")) assert.equal(it.estimate, true, `${r.id}: estimate 출처면 estimate 플래그 필요`);
+    }
+  }
+});
+
+test("출처끼리 값이 다른 항목에 conflict 표시가 있다 (브라이에스·IVL·ETIAS)", () => {
+  const find = (rid, kw) => REGIONS.find(r => r.id === rid).cautions.find(c => c.text.includes(kw));
+  assert.equal(find("dolo", "브라이에스").conflict, true);
+  assert.equal(find("nz", "MBIE").conflict, true);
+  assert.equal(find("dolo", "ETIAS").conflict, true);
+});
+
+test("Explore 단계에서 확인한 사실이 반영되어 있다", () => {
+  const all = JSON.stringify(REGIONS);
+  assert.ok(all.includes("개인 차량 통행 금지"));
+  assert.ok(all.includes("NZD 100"));
+  assert.ok(all.includes("€40"));
+  assert.ok(all.includes("비공식 요금"));
+});
+
+test("월별 데이터는 12개, 추천도는 1~5이고, 남반구 계절이 반대로 반영된다", () => {
+  for (const r of REGIONS) {
+    for (const k of ["monthly", "season", "peak"]) assert.equal(r[k].length, 12, `${r.id}.${k}`);
+    r.monthly.forEach(v => assert.ok(v >= 1 && v <= 5));
+    r.peak.forEach(p => assert.ok(["peak", "shoulder", "off"].includes(p)));
+  }
+  const nz = REGIONS.find(r => r.id === "nz");
+  assert.equal(nz.hemisphere, "S");
+  assert.ok(nz.monthly[0] > nz.monthly[6], "뉴질랜드는 1월 추천도가 7월보다 높아야 함");
+  const banff = REGIONS.find(r => r.id === "banff");
+  assert.ok(banff.monthly[6] > banff.monthly[0], "밴프는 7월 추천도가 1월보다 높아야 함");
+});
+
+test("URL 해시: 정상 값을 읽고 쓰며, 잘못된 값은 기본값(9월·첫 탭)으로 돌아간다", () => {
+  assert.deepEqual({ ...App.parseHash("#month=3&tab=nz", REGIONS) }, { month: 3, tab: "nz" });
+  assert.deepEqual({ ...App.parseHash("", REGIONS) }, { month: 9, tab: "banff" });
+  assert.deepEqual({ ...App.parseHash("#month=13&tab=<x>", REGIONS) }, { month: 9, tab: "banff" });
+  assert.deepEqual({ ...App.parseHash("#month=abc", REGIONS) }, { month: 9, tab: "banff" });
+  const h = App.buildHash({ month: 11, tab: "dolo" });
+  assert.equal(h, "#month=11&tab=dolo");
+  assert.deepEqual({ ...App.parseHash(h, REGIONS) }, { month: 11, tab: "dolo" });
+});
+
+test("비교표: 7개 행, 월을 바꾸면 날씨와 성수기 값이 바뀐다", () => {
+  const sep = App.renderCompare(REGIONS, 9, COMPARE_ROWS, SOURCES);
+  const jan = App.renderCompare(REGIONS, 1, COMPARE_ROWS, SOURCES);
+  assert.equal((sep.match(/<tr><th scope="row">/g) || []).length, 7);
+  assert.notEqual(sep, jan);
+  assert.ok(sep.includes("9월 기준") && jan.includes("1월 기준"));
+  assert.ok(sep.includes("낮 13~18°C"), "9월엔 수집한 기온을 표시");
+  assert.ok(jan.includes("한여름 성수기, 해가 김"), "1월 뉴질랜드는 한여름");
+});
+
+test("요약 카드: 월에 따라 추천도 별점이 바뀐다", () => {
+  const html1 = App.renderSummary(REGIONS, 1, SOURCES);
+  assert.equal((html1.match(/<article class="card/g) || []).length, 3);
+  assert.ok(html1.includes('aria-label="5점 중 5점"'), "1월 뉴질랜드 5점");
+  assert.ok(html1.includes('aria-label="5점 중 2점"'));
+});
+
+test("히트맵: 36칸이고 선택한 월만 강조된다", () => {
+  const h = App.renderHeatmap(REGIONS, 4);
+  assert.equal((h.match(/data-month=/g) || []).length, 36);
+  assert.equal((h.match(/<td class="sel">/g) || []).length, 3);
+});
+
+test("지역 패널: 명소, 장단점, 유의사항, 팁, 각주, 배지가 모두 나온다", () => {
+  for (const r of REGIONS) {
+    const p = App.renderPanel(r, 9, SOURCES);
+    for (const h of ["주요 명소", "장단점", "유의할 점", "현지 팁"]) assert.ok(p.includes(h), `${r.id}: ${h}`);
+    assert.ok(/<sup><a href="#src-/.test(p), `${r.id}: 각주 링크`);
+    assert.equal((p.match(/class="ph"/g) || []).length, r.spots.length);
+  }
+  const dolo = App.renderPanel(REGIONS[2], 9, SOURCES);
+  assert.ok(dolo.includes("출처마다 다름"));
+  assert.ok(dolo.includes("추정"));
+  assert.ok(App.renderPanel(REGIONS[1], 9, SOURCES).includes("남반구"));
+});
+
+test("외부 링크는 모두 새 탭으로 열리고 noopener가 붙는다", () => {
+  const out = App.renderPanel(REGIONS[0], 9, SOURCES) + App.renderSources(SOURCES) + App.renderSummary(REGIONS, 9, SOURCES);
+  const ext = out.match(/<a href="https?:[^>]*>/g) || [];
+  assert.ok(ext.length > 10);
+  for (const a of ext) assert.ok(a.includes('target="_blank"') && a.includes('rel="noopener noreferrer"'), a);
+});
+
+test("출처 목록: 공식/비공식/추정 배지가 붙는다", () => {
+  const s = App.renderSources(SOURCES);
+  assert.equal((s.match(/<li id="src-/g) || []).length, SOURCES.length);
+  assert.ok(s.includes("b-official") && s.includes("b-unofficial") && s.includes("b-estimate"));
+});
+
+test("HTML 이스케이프: 데이터에 태그가 있어도 그대로 실행되지 않는다", () => {
+  assert.equal(App.esc('<img src=x onerror="a">'), "&lt;img src=x onerror=&quot;a&quot;&gt;");
+  const evil = { ...REGIONS[0], name: "<script>x</script>", checklist: ["<b>y</b>"] };
+  const out = App.renderChecklists([evil], {});
+  assert.ok(!out.includes("<script>") && !out.includes("<b>y"));
+});
+
+test("체크리스트: 저장된 체크 상태가 반영된다", () => {
+  const out = App.renderChecklists(REGIONS, { "nz:0": true });
+  assert.ok(/data-key="nz:0" checked/.test(out));
+  assert.ok(!/data-key="nz:1" checked/.test(out));
+});
+
+test("localStorage를 쓸 수 없어도 오류 없이 기본값을 쓴다", () => {
+  const broken = App.makeStore(() => { throw new Error("blocked"); });
+  assert.equal(broken.get("k", "fallback"), "fallback");
+  assert.equal(broken.set("k", 1), false);
+  const mem = new Map();
+  const ok = App.makeStore(() => ({ getItem: k => mem.get(k) ?? null, setItem: (k, v) => mem.set(k, v) }));
+  assert.equal(ok.set("k", { a: 1 }), true);
+  assert.deepEqual({ ...ok.get("k") }, { a: 1 });
+});
+
+test("의존성 규약: 외부 스크립트 없음, 스타일시트는 Google Fonts만", () => {
+  assert.ok(!/<script[^>]+src=/i.test(html), "외부 <script src> 금지");
+  const links = html.match(/<link[^>]*rel="stylesheet"[^>]*>/g) || [];
+  for (const l of links) assert.match(l, /href="https:\/\/fonts\.googleapis\.com\//);
+  assert.ok(!/import\s*\(|\bimport\s+[\w{]/.test(script("app")), "ES 모듈 import 금지");
+});
+
+test("테마: 라이트/다크 토큰이 모두 정의되어 있다", () => {
+  assert.ok(html.includes("@media (prefers-color-scheme:dark)"));
+  assert.ok(html.includes(':root:not([data-theme="light"])'));
+  assert.ok(html.includes(':root[data-theme="dark"]'));
+  assert.match(html, /body\{[^}]*background:var\(--bg\)/);
+});

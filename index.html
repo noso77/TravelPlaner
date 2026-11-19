@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>산악 여행지 비교</title>
+<meta name="description" content="밴프&재스퍼 · 뉴질랜드 남섬 · 돌로미티 – 명소 사진, 장단점, 유의사항, 팁 비교 가이드">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+:root{
+  --bg:#f6f5f1; --surface:#ffffff; --surface-2:#efede7; --text:#1d2125; --muted:#5b636b; --border:#dcd8cf;
+  --accent:#2f5d8a; --good:#1f7a4d; --good-bg:#e3f3ea; --mid:#8a6a12; --mid-bg:#faf1d6; --warn:#b03a2e; --warn-bg:#fbe6e3;
+  --banff:#127c86; --nz:#2e7d32; --dolo:#c25a1b;
+  --heat-1:#f1e4e1; --heat-2:#f4ecd9; --heat-3:#eaf0dc; --heat-4:#cfe8d6; --heat-5:#a6d9b9;
+  --shadow:0 1px 3px rgba(0,0,0,.08);
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#15181b; --surface:#1e2226; --surface-2:#262b30; --text:#e8eaec; --muted:#a3abb3; --border:#353b42;
+    --accent:#8bb8e6; --good:#7fd3a3; --good-bg:#1d3a2b; --mid:#e4c56a; --mid-bg:#3b3219; --warn:#f19a8f; --warn-bg:#43231f;
+    --banff:#4cc3cd; --nz:#7cc97f; --dolo:#f0935a;
+    --heat-1:#3a2624; --heat-2:#3a3322; --heat-3:#2f3a24; --heat-4:#244131; --heat-5:#1f5a3b;
+    --shadow:none; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15181b; --surface:#1e2226; --surface-2:#262b30; --text:#e8eaec; --muted:#a3abb3; --border:#353b42;
+  --accent:#8bb8e6; --good:#7fd3a3; --good-bg:#1d3a2b; --mid:#e4c56a; --mid-bg:#3b3219; --warn:#f19a8f; --warn-bg:#43231f;
+  --banff:#4cc3cd; --nz:#7cc97f; --dolo:#f0935a;
+  --heat-1:#3a2624; --heat-2:#3a3322; --heat-3:#2f3a24; --heat-4:#244131; --heat-5:#1f5a3b;
+  --shadow:none; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Noto Sans KR",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.6;font-size:15px}
+a{color:var(--accent)}
+img{max-width:100%;display:block}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+header.site{padding:28px 0 12px}
+header.site h1{font-size:clamp(1.4rem,4vw,2rem);margin:0 0 6px;line-height:1.3}
+.meta{color:var(--muted);font-size:.9rem;display:flex;flex-wrap:wrap;gap:6px 14px}
+.notice{margin:14px 0 0;padding:10px 14px;border-radius:10px;background:var(--mid-bg);color:var(--text);border:1px solid var(--border);font-size:.92rem}
+.toolbar{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--border);padding:10px 0}
+.toolbar .wrap{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.toolbar label{font-size:.9rem;color:var(--muted)}
+select,button{font:inherit;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:6px 10px;cursor:pointer}
+button:focus-visible,select:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+nav.jump{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:.88rem}
+section{padding:26px 0 6px}
+h2{font-size:1.25rem;margin:0 0 12px}
+h3{font-size:1.05rem;margin:18px 0 8px}
+.grid3{display:grid;grid-template-columns:1fr;gap:14px}
+@media (min-width:640px){.grid3{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:960px){.grid3{grid-template-columns:repeat(3,1fr)}}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);min-width:0}
+.card .body{padding:12px 14px 14px}
+.card h3{margin:0 0 4px}
+.region-bar{height:5px}
+.r-banff{--rc:var(--banff)} .r-nz{--rc:var(--nz)} .r-dolo{--rc:var(--dolo)}
+.region-bar{background:var(--rc)}
+.ph{aspect-ratio:16/9;background:var(--surface-2);position:relative;overflow:hidden}
+.ph img{width:100%;height:100%;object-fit:cover}
+.ph .fallback{position:absolute;inset:0;display:none;align-items:center;justify-content:center;text-align:center;padding:10px;color:var(--muted);font-size:.9rem}
+.ph.broken img{display:none} .ph.broken .fallback{display:flex}
+.credit{font-size:.75rem;color:var(--muted);padding:6px 14px 0;word-break:break-word}
+.stars{color:var(--rc);letter-spacing:1px;font-size:1.05rem}
+.stars .off{color:var(--border)}
+ul.clean{margin:6px 0;padding-left:1.1em}
+ul.clean li{margin:2px 0}
+.pro::marker{content:"＋ ";color:var(--good)}
+.con::marker{content:"－ ";color:var(--warn)}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch}
+.tab{white-space:nowrap;border-radius:999px;padding:7px 14px;border:1px solid var(--border);background:var(--surface)}
+.tab[aria-selected="true"]{background:var(--rc);color:#fff;border-color:var(--rc)}
+:root[data-theme="dark"] .tab[aria-selected="true"]{color:#111}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tab[aria-selected="true"]{color:#111}}
+.panel{margin-top:14px}
+.badge{display:inline-block;font-size:.72rem;padding:1px 7px;border-radius:999px;border:1px solid var(--border);vertical-align:1px;margin-left:4px;white-space:nowrap}
+.b-unofficial{background:var(--mid-bg);color:var(--mid)}
+.b-conflict{background:var(--warn-bg);color:var(--warn)}
+.b-estimate{background:var(--surface-2);color:var(--muted)}
+.b-official{background:var(--good-bg);color:var(--good)}
+.caution{background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--rc);border-radius:10px;padding:10px 12px;margin:8px 0}
+.caution .cat{font-size:.78rem;font-weight:700;color:var(--rc);margin-right:6px}
+.checked{font-size:.75rem;color:var(--muted);white-space:nowrap}
+.wx{font-size:.8rem;color:var(--muted);overflow-wrap:anywhere}
+sup a{text-decoration:none;font-size:.75em}
+.scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--border);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.9rem}
+th,td{padding:9px 10px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
+thead th{background:var(--surface-2);position:sticky;top:0}
+table.compare{min-width:720px}
+table.compare th[scope=row]{width:140px;color:var(--muted);font-weight:500}
+.lv{display:inline-block;font-size:.72rem;padding:1px 7px;border-radius:6px;margin-right:6px;font-weight:700}
+.lv-good{background:var(--good-bg);color:var(--good)} .lv-mid{background:var(--mid-bg);color:var(--mid)} .lv-warn{background:var(--warn-bg);color:var(--warn)}
+table.heat{min-width:680px;text-align:center}
+table.heat th,table.heat td{text-align:center;padding:6px 4px}
+table.heat th[scope=row]{text-align:left;padding-left:10px;white-space:nowrap}
+.heat button{width:100%;border:0;border-radius:6px;padding:8px 0;font-weight:700;color:var(--text)}
+.h1{background:var(--heat-1)} .h2{background:var(--heat-2)} .h3{background:var(--heat-3)} .h4{background:var(--heat-4)} .h5{background:var(--heat-5)}
+.heat .sel button{outline:3px solid var(--accent);outline-offset:-3px}
+.legend{font-size:.8rem;color:var(--muted);margin-top:6px}
+.checklist label{display:flex;gap:8px;align-items:flex-start;padding:5px 0;cursor:pointer}
+.checklist input{margin-top:5px;accent-color:var(--rc)}
+ol.sources{padding-left:1.4em;font-size:.88rem}
+ol.sources li{margin:4px 0;word-break:break-word}
+ol.sources li:target{background:var(--mid-bg)}
+footer{padding:30px 0 40px;color:var(--muted);font-size:.82rem}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+</style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <h1>산악 여행지 후보 비교 가이드</h1>
+    <div class="meta">
+      <span>🍁 밴프&재스퍼 · 🥝 뉴질랜드 남섬 · 🏔️ 돌로미티</span>
+      <span>기준: 성인 3명 · 10박 12일 · 렌터카 + 가벼운 트레킹</span>
+      <span id="checked-at"></span>
+    </div>
+    <p class="notice">⚠️ 요금·예약 규정·입국 요건은 자주 바뀝니다. 항목마다 붙은 출처 번호와 확인일을 보고, <strong>출발 전 공식 사이트에서 다시 확인</strong>하세요. 「비공식」 표시는 블로그나 언론 출처, 「추정」 표시는 출처 없이 계산한 참고값입니다.</p>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="wrap">
+    <div>
+      <label for="month">여행 월</label>
+      <select id="month"></select>
+    </div>
+    <nav class="jump" aria-label="바로가기">
+      <a href="#summary">요약</a><a href="#detail">지역 상세</a><a href="#compare">비교표</a><a href="#monthly">월별 추천</a><a href="#checklist">체크리스트</a><a href="#sources">출처</a>
+    </nav>
+    <button id="theme-toggle" type="button" aria-label="테마 전환">🌓 테마</button>
+  </div>
+</div>
+
+<main class="wrap">
+  <section id="summary" aria-labelledby="h-summary">
+    <h2 id="h-summary">한눈에 보기 <span id="summary-month" class="checked"></span></h2>
+    <div class="grid3" id="summary-cards"></div>
+  </section>
+
+  <section id="detail" aria-labelledby="h-detail">
+    <h2 id="h-detail">지역 상세</h2>
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <div class="panel" id="panel" role="tabpanel"></div>
+  </section>
+
+  <section id="compare" aria-labelledby="h-compare">
+    <h2 id="h-compare">3곳 나란히 비교</h2>
+    <div class="scroll-x" id="compare-table"></div>
+    <p class="legend">등급: <span class="lv lv-good">좋음</span><span class="lv lv-mid">보통</span><span class="lv lv-warn">주의</span> · 표가 화면보다 넓으면 좌우로 밀어서 보세요.</p>
+  </section>
+
+  <section id="monthly" aria-labelledby="h-monthly">
+    <h2 id="h-monthly">월별 추천도</h2>
+    <div class="scroll-x" id="heatmap"></div>
+    <p class="legend">1~5점 (렌터카 + 트레킹 기준, 작성자 판단). 칸을 누르면 그 월 기준으로 페이지 전체가 바뀝니다. 뉴질랜드는 남반구라 계절이 반대예요 (9월 = 초봄).</p>
+  </section>
+
+  <section id="checklist" aria-labelledby="h-checklist">
+    <h2 id="h-checklist">입국·예약 체크리스트</h2>
+    <p class="legend" style="margin-top:0">체크 상태는 이 브라우저에만 저장되고, 다른 사람에게는 공유되지 않습니다.</p>
+    <div class="grid3" id="checklists"></div>
+  </section>
+
+  <section id="sources" aria-labelledby="h-sources">
+    <h2 id="h-sources">출처</h2>
+    <ol class="sources" id="source-list"></ol>
+  </section>
+</main>
+<footer><div class="wrap">사진: Wikimedia Commons (각 사진 아래에 작성자와 라이선스 표기). 이 페이지는 참고용이며 정보의 정확성을 보장하지 않습니다.</div></footer>
+
+<script id="data">
+const CHECKED = "2026-11-19";
+
+const SOURCES = [
+  { id:"pc-louise", title:"Parks Canada – Lake Louise & Moraine Lake 방문/셔틀", url:"https://parks.canada.ca/pn-np/ab/banff/visit/parkbus/louise", official:true, read:true, checkedAt:CHECKED },
+  { id:"pc-weather", title:"Parks Canada – Banff 날씨 정보", url:"https://parks.canada.ca/pn-np/ab/banff/securite-safety/meteo-weather", official:true, read:true, checkedAt:CHECKED },
+  { id:"pc-pass", title:"Parks Canada – 입장료·패스", url:"https://parks.canada.ca/voyage-travel/admission", official:true, read:false, checkedAt:CHECKED },
+  { id:"pc-bear", title:"Parks Canada – 야생동물 안전 (Banff)", url:"https://parks.canada.ca/pn-np/ab/banff/securite-safety/faune-wildlife", official:true, read:false, checkedAt:CHECKED },
+  { id:"banffguide", title:"The Banff Guide – Moraine Lake 셔틀 예약 2026", url:"https://thebanffguide.com/moraine-lake-shuttle-reservations/", official:false, read:true, checkedAt:CHECKED },
+  { id:"banffbound", title:"BanffBound – Banff 날씨와 방문 시기 2026", url:"https://banffbound.com/blog/banff-weather-best-time-to-visit", official:false, read:true, checkedAt:CHECKED },
+  { id:"fc-yyc", title:"FlightConnections – 인천→캘거리 직항", url:"https://www.flightconnections.com/flights-from-icn-to-yyc", official:false, read:true, checkedAt:CHECKED },
+  { id:"inz", title:"Immigration New Zealand – NZeTA", url:"https://www.immigration.govt.nz/new-zealand-visas/visas/visa/nzeta", official:true, read:false, checkedAt:CHECKED },
+  { id:"mbie-ivl", title:"MBIE – International Visitor Conservation and Tourism Levy", url:"https://www.mbie.govt.nz/immigration-and-tourism/tourism/tourism-funding/international-visitor-conservation-and-tourism-levy", official:true, read:true, checkedAt:CHECKED },
+  { id:"ivl-2026", title:"airtraveler.club – NZ IVL 2026 (NZD 100)", url:"https://www.airtraveler.club/intel/new-zealand-ivl-fee-2026-nzd-100-non-refundable-and-who-exempt/", official:false, read:true, checkedAt:CHECKED },
+  { id:"doc-milford", title:"NZ DOC – Milford Track", url:"https://www.doc.govt.nz/milfordtrack", official:true, read:false, checkedAt:CHECKED },
+  { id:"drivesafe", title:"DriveSafe NZ – 방문객 운전 안내", url:"https://www.drivesafe.org.nz/", official:true, read:false, checkedAt:CHECKED },
+  { id:"w2t-qt", title:"weather2travel – Queenstown 9월 날씨", url:"https://www.weather2travel.com/new-zealand/queenstown/september", official:false, read:true, checkedAt:CHECKED },
+  { id:"etias-eu", title:"EU 공식 – ETIAS", url:"https://travel-europe.europa.eu/etias_en", official:true, read:false, checkedAt:CHECKED },
+  { id:"etias-btn", title:"Business Travel News Europe – ETIAS 2027 연기 전망", url:"https://www.businesstravelnewseurope.com/Management/EU-likely-to-postpone-ETIAS-introduction-to-2027", official:false, read:true, checkedAt:CHECKED },
+  { id:"auronzo", title:"Auronzo – Tre Cime 유료 도로 예약", url:"https://www.auronzo.info/", official:true, read:false, checkedAt:CHECKED },
+  { id:"prags", title:"Prags/Braies 관광청 – 차량 진입 규정", url:"https://www.prags.bz/", official:true, read:false, checkedAt:CHECKED },
+  { id:"mfe-dolo", title:"Mountains for Everybody – 돌로미티 예약 가이드", url:"https://mountainsforeverybody.com/dolomites-reservations-guide-what-to-book-before-you-go/", official:false, read:true, checkedAt:CHECKED },
+  { id:"kk-dolo", title:"Kimberly Kephart – 2026 돌로미티 접근 규정 변경", url:"https://kimberly-kephart-travels.kit.com/posts/heads-up-3-dolomites-spots-changed-access-rules-for-2026", official:false, read:true, checkedAt:CHECKED },
+  { id:"euronews-seceda", title:"Euronews – 세체다 토지주 통행료", url:"https://www.euronews.com/travel/2025/08/01/dolomite-landowners-ask-tourists-to-pay-fee-on-scenic-route-after-8000-visitors-arrive-in-", official:false, read:true, checkedAt:CHECKED },
+  { id:"moonhoney", title:"Moonhoney Travel – 9월 돌로미티 하이킹 (리프트 종료 시기)", url:"https://www.moonhoneytravel.com/hiking-dolomites-september/", official:false, read:true, checkedAt:CHECKED },
+  { id:"wanderlog-cortina", title:"Wanderlog – 9월 코르티나 날씨", url:"https://wanderlog.com/geoInMonth/10027/9/cortina-dampezzo-in-september", official:false, read:true, checkedAt:CHECKED },
+  { id:"commons", title:"Wikimedia Commons – 사진 출처 (각 사진 페이지 링크 참조)", url:"https://commons.wikimedia.org/", official:true, read:true, checkedAt:CHECKED },
+  { id:"estimate", title:"작성자 추정 – 공개 자료 없이 계산한 참고값 (검증 필요)", url:"", official:false, read:false, checkedAt:CHECKED }
+];
+
+const REGIONS = [
+{
+  id:"banff", cls:"r-banff", flag:"🍁", name:"캐나다 밴프 & 재스퍼", hemisphere:"N",
+  summary:"에메랄드빛 빙하호와 아이스필드 파크웨이 드라이브. 직항이 있어 이동이 가장 편해요.",
+  monthly:[2,2,2,1,2,4,5,5,5,2,1,2],
+  season:["한겨울, 스키 시즌 (−15°C 안팎)","한겨울, 호수 결빙","늦겨울, 트레일 대부분 눈","해빙기, 진흙·눈 섞인 비수기","늦봄, 호수 대부분 아직 결빙","초여름, 호수 해빙·성수기 시작","한여름 성수기, 가장 붐빔","한여름 성수기, 산불 연기 가능","초가을, 라치(낙엽송) 단풍, 일교차 큼","가을 끝, 첫눈·시설 휴업 시작","초겨울 비수기","겨울, 스키 시즌 시작"],
+  weatherSep:{ text:"낮 13~18°C / 밤 0~4°C, 늦은 9월엔 첫눈 가능", src:["banffbound","pc-weather"], conflict:true },
+  peak:["off","off","off","off","shoulder","peak","peak","peak","peak","shoulder","off","off"],
+  spots:[
+    { name:"레이크 루이스", desc:"빅토리아 빙하를 배경으로 한 대표 빙하호. 주차가 어려워 셔틀이 편해요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6c/1_lake_louise_pano_2019.jpg/960px-1_lake_louise_pano_2019.jpg", page:"https://commons.wikimedia.org/wiki/File:1_lake_louise_pano_2019.jpg", credit:"Chensiyuan", license:"CC BY-SA 4.0" },
+    { name:"모레인 호수", desc:"텐 피크스 계곡의 청록색 호수. 개인 차량 금지, 셔틀이나 투어로만 갈 수 있어요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f6/Lake_Moraine-Banff_National_Park.jpg/960px-Lake_Moraine-Banff_National_Park.jpg", page:"https://commons.wikimedia.org/wiki/File:Lake_Moraine-Banff_National_Park.jpg", credit:"Florian Fuchs", license:"CC BY 3.0" },
+    { name:"아이스필드 파크웨이 (보우 호수)", desc:"레이크 루이스와 재스퍼를 잇는 약 230km 드라이브 길. 중간에 빙하와 호수가 이어져요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/5/51/Bow_Lake_beim_Icefields_Parkway.jpg/960px-Bow_Lake_beim_Icefields_Parkway.jpg", page:"https://commons.wikimedia.org/wiki/File:Bow_Lake_beim_Icefields_Parkway.jpg", credit:"Florian Fuchs", license:"CC BY 3.0" },
+    { name:"페이토 호수", desc:"늑대 머리 모양의 호수를 전망대에서 내려다봐요. 주차장에서 짧게 걸어가면 돼요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/9/91/Peyto_Lake-Banff_NP-Canada.jpg/960px-Peyto_Lake-Banff_NP-Canada.jpg", page:"https://commons.wikimedia.org/wiki/File:Peyto_Lake-Banff_NP-Canada.jpg", credit:"Tobias Alt, Tobi 87", license:"CC BY-SA 4.0" },
+    { name:"말린 호수 · 스피릿 아일랜드", desc:"재스퍼의 대표 풍경. 스피릿 아일랜드는 보트 크루즈로 가요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/4/49/Spirit_Island%2C_Maligne_Lake%2C_Jasper_NP.jpg/960px-Spirit_Island%2C_Maligne_Lake%2C_Jasper_NP.jpg", page:"https://commons.wikimedia.org/wiki/File:Spirit_Island,_Maligne_Lake,_Jasper_NP.jpg", credit:"Christian Abend", license:"CC BY-SA 2.0" },
+    { name:"밴프 타운", desc:"캐스케이드산이 보이는 거점 마을. 곤돌라, 온천, 식당이 모여 있어요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5f/Cascade_Mountain_Banff_Avenue.jpg/960px-Cascade_Mountain_Banff_Avenue.jpg", page:"https://commons.wikimedia.org/wiki/File:Cascade_Mountain_Banff_Avenue.jpg", credit:"Adam Bishop", license:"CC BY-SA 4.0" }
+  ],
+  pros:["인천→캘거리 직항 (약 10.5시간)","도로가 넓고 운전이 쉬움 (우측통행)","주차장 근처에서 볼 수 있는 명소가 많아 트레킹 부담이 적음","9월 중순~말 라치 단풍 시즌"],
+  cons:["성수기 숙박비가 매우 비싸고 일찍 마감","인기 명소는 셔틀 예약 경쟁 (모레인 호수)","곰 등 야생동물 대비 필요","9월 말부터 첫눈과 일부 시설 휴업 가능"],
+  cautions:[
+    { cat:"입국", text:"캐나다 전자여행허가(eTA)를 출국 전에 온라인으로 신청하세요. 반드시 정부 공식 사이트에서 신청해야 해요.", src:["estimate"], estimate:true },
+    { cat:"예약", text:"모레인 호수 도로는 연중 개인 차량 통행 금지예요. 셔틀(6/1~10/12경)이나 투어로만 갈 수 있어요.", src:["pc-louise"] },
+    { cat:"예약", text:"셔틀 예약은 4월 중순에 열려요. 2026년엔 첫날에만 약 4만 건이 몰렸으니 오픈 날 바로 예약하세요.", src:["banffguide"] },
+    { cat:"예약", text:"국립공원 입장 패스(일일권 또는 연간 디스커버리 패스)가 필요해요. 3명이 7일 넘게 머문다면 연간 패스가 유리할 수 있어요.", src:["pc-pass"] },
+    { cat:"안전", text:"곰 서식지예요. 베어 스프레이를 갖고 다니고, 소리를 내며 걷고, 음식은 차 안에 보관하세요.", src:["pc-bear"] },
+    { cat:"시즌", text:"9월 날씨는 출처마다 차이가 커요. 낮 13~18°C, 밤 0~4°C 정도이고, 늦은 9월엔 고갯길에 눈이 올 수 있어요.", src:["banffbound","pc-weather"], conflict:true },
+    { cat:"시즌", text:"재스퍼는 2024년 산불 피해를 입었어요. 일부 트레일과 시설의 운영 여부를 확인하세요.", src:["estimate"], estimate:true }
+  ],
+  tips:["모레인 호수 일출은 첫 셔틀이나 이른 시간 투어를 노리세요.","아이스필드 파크웨이에는 주유소가 거의 없어요. 출발 전에 기름을 가득 채우세요.","숙소는 밴프보다 캔모어가 조금 저렴한 편이에요.","라치 단풍은 라치 밸리 트레일(모레인 호수 출발)이 유명해요. 9월 중순이 절정이에요."],
+  compare:{
+    flight:{ value:"인천→캘거리 직항 약 10.5시간 + 밴프까지 차로 1.5시간", level:"good", src:["fc-yyc"] },
+    cost:{ value:"1인 약 450~700만원", level:"warn", src:["estimate"], estimate:true },
+    drive:{ value:"우측통행, 넓은 도로. 야생동물 출몰 주의", level:"good", src:["estimate"], estimate:true },
+    trek:{ value:"주차장 근처 명소가 많음. 중급 코스(라치 밸리 등)도 다양", level:"good", src:["estimate"], estimate:true },
+    lodging:{ value:"성수기엔 매우 비싸고 일찍 마감. 6개월 전 예약 권장", level:"warn", src:["estimate"], estimate:true }
+  },
+  checklist:["캐나다 eTA 신청 (공식 사이트)","Parks Canada 입장 패스 구매","모레인 호수·레이크 루이스 셔틀 예약 (4월 중순 오픈)","렌터카 예약 (캘거리 공항 픽업)","밴프·재스퍼·캔모어 숙소 예약","베어 스프레이 현지 구매 (항공기 반입 불가)","말린 호수 크루즈 예약"]
+},
+{
+  id:"nz", cls:"r-nz", flag:"🥝", name:"뉴질랜드 남섬", hemisphere:"S",
+  summary:"피오르드, 빙하, 별빛 호수까지 풍경이 다양해요. 남반구라 9월은 초봄이고 쌀쌀해요.",
+  monthly:[5,5,5,4,2,2,2,2,2,3,4,4],
+  season:["한여름 성수기, 해가 김","한여름, 날씨 가장 안정적","늦여름·초가을, 추천 시기","가을 단풍 (애로우타운)","늦가을, 쌀쌀함","초겨울, 스키 시즌","한겨울, 산간 도로 결빙","한겨울, 스키 시즌","초봄, 쌀쌀하고 날씨가 자주 바뀜, 비수기","봄, 루핀 개화 전, 날씨 회복","늦봄, 루핀 꽃 시즌","초여름, 성수기 시작"],
+  weatherSep:{ text:"퀸스타운 기준 낮 8~13°C / 밤 0~3°C, 비 오는 날 11~14일", src:["w2t-qt"], conflict:true },
+  peak:["peak","peak","peak","shoulder","off","off","shoulder","shoulder","off","shoulder","shoulder","peak"],
+  spots:[
+    { name:"밀포드 사운드", desc:"마이터 피크가 솟은 피오르드. 크루즈나 경비행기로 둘러봐요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/Milford_Sound_cruising_2016-01-31-6.jpg/960px-Milford_Sound_cruising_2016-01-31-6.jpg", page:"https://commons.wikimedia.org/wiki/File:Milford_Sound_cruising_2016-01-31-6.jpg", credit:"Szilas", license:"Public domain" },
+    { name:"아오라키/마운트 쿡 – 후커 밸리", desc:"뉴질랜드 최고봉을 보며 걷는 왕복 약 3시간의 평탄한 트랙.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9b/Hooker_Valley_walk%2C_Aoraki_%28Mount_Cook%29%2C_New_Zealand.jpg/960px-Hooker_Valley_walk%2C_Aoraki_%28Mount_Cook%29%2C_New_Zealand.jpg", page:"https://commons.wikimedia.org/wiki/File:Hooker_Valley_walk,_Aoraki_(Mount_Cook),_New_Zealand.jpg", credit:"Charlie Mitchell", license:"CC BY-SA 4.0" },
+    { name:"퀸스타운", desc:"와카티푸 호숫가의 액티비티 거점. 곤돌라 전망이 좋아요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cc/Lake_Wakatipu_from_Queenstown_gondola.jpg/960px-Lake_Wakatipu_from_Queenstown_gondola.jpg", page:"https://commons.wikimedia.org/wiki/File:Lake_Wakatipu_from_Queenstown_gondola.jpg", credit:"Avenue", license:"CC BY-SA 3.0" },
+    { name:"와나카 (와나카 트리)", desc:"호수 속 외로운 나무로 유명한 조용한 호반 마을.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3a/That_Wanaka_Tree%2C_New_Zealand.jpg/960px-That_Wanaka_Tree%2C_New_Zealand.jpg", page:"https://commons.wikimedia.org/wiki/File:That_Wanaka_Tree,_New_Zealand.jpg", credit:"Kate Branch", license:"CC BY-SA 4.0" },
+    { name:"테카포 호수", desc:"선한 목자의 교회와 밤하늘 보호구역. 별 보기 명소예요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/6/62/Church_of_the_Good_Shepherd%2C_Lake_Tekapo%2C_New_Zealand_03.jpg/960px-Church_of_the_Good_Shepherd%2C_Lake_Tekapo%2C_New_Zealand_03.jpg", page:"https://commons.wikimedia.org/wiki/File:Church_of_the_Good_Shepherd,_Lake_Tekapo,_New_Zealand_03.jpg", credit:"Michal Klajban", license:"CC BY-SA 4.0" },
+    { name:"프란츠 요제프 빙하", desc:"서해안 빙하. 전망 트랙이나 헬기 투어로 볼 수 있어요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c4/Franz_Josef_Glacier_14.jpg/960px-Franz_Josef_Glacier_14.jpg", page:"https://commons.wikimedia.org/wiki/File:Franz_Josef_Glacier_14.jpg", credit:"Krzysztof Golik", license:"CC BY-SA 4.0" }
+  ],
+  pros:["풍경이 가장 다양함 (피오르드, 빙하, 호수, 별)","9월은 비수기라 숙박이 상대적으로 저렴하고 한산함","평탄하고 쉬운 트랙이 많음","치안이 좋고 영어 사용"],
+  cons:["9월은 초봄이라 춥고 비가 잦음 (산간 도로에 눈 가능)","좌측통행에 1차선 다리, 구불구불한 도로","입국 비용 추가 (NZeTA와 IVL, 1인 약 NZD 117~123)","명소 간 이동 거리가 길어 운전 시간이 많음"],
+  cautions:[
+    { cat:"입국", text:"NZeTA(앱 NZD 17 / 웹 NZD 23)와 관광세 IVL(NZD 100)을 함께 내야 해서 1인 약 NZD 117~123이에요. IVL은 환불되지 않아요.", src:["inz","ivl-2026"] },
+    { cat:"입국", text:"정부 페이지(MBIE)에는 아직 예전 IVL 금액(NZD 35)이 남아 있어요. 최신 금액은 Immigration NZ에서 확인하세요.", src:["mbie-ivl","ivl-2026"], conflict:true },
+    { cat:"운전", text:"좌측통행이고 1차선 다리(양보 표지)가 많아요. 운전 시간을 넉넉히 잡으세요.", src:["drivesafe"] },
+    { cat:"운전", text:"밀포드 로드(호머 터널 구간)는 겨울과 봄에 눈사태 위험으로 통제될 수 있고, 체인을 갖고 다녀야 할 수 있어요.", src:["estimate"], estimate:true },
+    { cat:"예약", text:"밀포드 트랙(4일 그레이트 워크)은 성수기(대략 10월 말~4월)에만 예약할 수 있어요. 9월은 비수기라 대신 당일 크루즈를 추천해요.", src:["doc-milford"], estimate:true },
+    { cat:"시즌", text:"9월 퀸스타운은 낮 8~13°C, 밤 0~3°C 정도예요(출처마다 차이). 비 오는 날이 많아 방수 옷을 챙기세요.", src:["w2t-qt"], conflict:true }
+  ],
+  tips:["NZeTA는 앱으로 신청하면 웹보다 NZD 6 저렴해요.","밀포드 사운드는 비 오는 날 폭포가 더 장관이에요. 날씨에 실망하지 마세요.","테카포 별 보기는 달이 없는 날로 일정을 잡으세요.","렌터카는 퀸스타운에서 타고 크라이스트처치에서 반납하는 편도 일정도 많이 써요 (편도 반납 요금 확인)."],
+  compare:{
+    flight:{ value:"인천→오클랜드 직항 약 11시간 + 국내선 약 2시간 (경유 총 14~16시간)", level:"mid", src:["estimate"], estimate:true },
+    cost:{ value:"1인 약 350~550만원 (9월 비수기)", level:"good", src:["estimate"], estimate:true },
+    drive:{ value:"좌측통행, 1차선 다리, 구불구불한 산길, 장거리 운전", level:"warn", src:["drivesafe"] },
+    trek:{ value:"후커 밸리 등 평탄한 트랙이 많지만 9월엔 일부 고산 트랙에 눈", level:"mid", src:["estimate"], estimate:true },
+    lodging:{ value:"9월 비수기라 구하기 쉽고 가격도 무난", level:"good", src:["estimate"], estimate:true }
+  },
+  checklist:["NZeTA와 IVL 결제 (앱 권장)","렌터카 예약 (편도 반납 여부 확인)","밀포드 사운드 크루즈 예약","퀸스타운·와나카·테카포·마운트 쿡 숙소 예약","국제운전면허증 발급","방수 재킷과 보온 레이어 준비"]
+},
+{
+  id:"dolo", cls:"r-dolo", flag:"🏔️", name:"이탈리아 돌로미티", hemisphere:"N",
+  summary:"뾰족한 석회암 봉우리와 초원, 산장(리푸지오) 문화. 9월 초중순이 성수기 끝 무렵이에요.",
+  monthly:[2,2,2,1,1,4,5,4,4,2,1,2],
+  season:["스키 시즌","스키 시즌","늦은 스키 시즌","해빙기, 리프트 대부분 휴업","비수기, 산장 대부분 휴업","하이킹 시즌 시작, 고지대엔 잔설","하이킹 성수기","최성수기, 가장 붐비고 비쌈","초중순 쾌적, 하순부터 리프트·산장 순차 종료","가을 단풍, 시설 대부분 휴업","비수기","스키 시즌 시작"],
+  weatherSep:{ text:"코르티나 기준 낮 13~16°C / 밤 5~6°C, 오후 소나기 가능", src:["wanderlog-cortina"], conflict:true },
+  peak:["peak","peak","shoulder","off","off","shoulder","peak","peak","shoulder","off","off","peak"],
+  spots:[
+    { name:"트레 치메 디 라바레도", desc:"세 개의 거대한 암봉을 한 바퀴 도는 약 10km 순환 트레킹.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4e/Drei_Zinnen_Tre_Cime_di_Lavaredo_Dolomites.jpg/960px-Drei_Zinnen_Tre_Cime_di_Lavaredo_Dolomites.jpg", page:"https://commons.wikimedia.org/wiki/File:Drei_Zinnen_Tre_Cime_di_Lavaredo_Dolomites.jpg", credit:"Wolfgang Moroder", license:"CC BY-SA 3.0" },
+    { name:"세체다", desc:"칼날 같은 능선으로 유명해요. 오르티세이에서 케이블카로 올라가요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/Furnadoia_de_Seceda_y_Resciesa.JPG/960px-Furnadoia_de_Seceda_y_Resciesa.JPG", page:"https://commons.wikimedia.org/wiki/File:Furnadoia_de_Seceda_y_Resciesa.JPG", credit:"Wolfgang Moroder", license:"CC BY-SA 3.0" },
+    { name:"브라이에스 호수", desc:"나무 보트가 떠 있는 에메랄드 호수. 한 바퀴 약 1시간이에요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/Lago_di_Braies_South_Tyrol_3.jpg/960px-Lago_di_Braies_South_Tyrol_3.jpg", page:"https://commons.wikimedia.org/wiki/File:Lago_di_Braies_South_Tyrol_3.jpg", credit:"kallerna", license:"CC BY-SA 4.0" },
+    { name:"알페 디 시우시", desc:"유럽 최대 규모의 고원 초원. 가벼운 산책에 좋아요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7f/Seiser_Alm_01.jpg/960px-Seiser_Alm_01.jpg", page:"https://commons.wikimedia.org/wiki/File:Seiser_Alm_01.jpg", credit:"H. Zell", license:"CC BY-SA 3.0" },
+    { name:"카레차 호수", desc:"라테마르산이 비치는 작은 호수. 도로 옆이라 접근이 쉬워요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3a/Lago_di_Carezza_and_Latemar%2C_Carezza%2C_Trentino-Alto_Adige%2C_Italy%2C_2025_October.jpg/960px-Lago_di_Carezza_and_Latemar%2C_Carezza%2C_Trentino-Alto_Adige%2C_Italy%2C_2025_October.jpg", page:"https://commons.wikimedia.org/wiki/File:Lago_di_Carezza_and_Latemar,_Carezza,_Trentino-Alto_Adige,_Italy,_2025_October.jpg", credit:"Ximonic (Simo Räsänen)", license:"CC BY-SA 4.0" },
+    { name:"코르티나 담페초", desc:"동부 돌로미티의 거점 마을. 2026 동계올림픽 개최지예요.", img:"https://thumb.wikimedia.org/wikipedia/commons/thumb/3/36/Faloria_Cortina_d%27Ampezzo_10.jpg/960px-Faloria_Cortina_d%27Ampezzo_10.jpg", page:"https://commons.wikimedia.org/wiki/File:Faloria_Cortina_d%27Ampezzo_10.jpg", credit:"kallerna", license:"CC BY-SA 4.0" }
+  ],
+  pros:["케이블카로 쉽게 고지대 풍경에 닿을 수 있음","산장(리푸지오)에서 식사하는 독특한 경험","9월 초중순엔 날씨가 쾌적하고 8월보다 한산함","베네치아 등 이탈리아 도시 여행과 묶기 좋음"],
+  cons:["한국에서 직항이 없음 (유럽 경유 후 차로 2~3시간)","산악 도로가 좁고 고갯길 굽이가 많음","인기 명소의 도로 요금·예약제가 계속 바뀜","9월 하순부터 리프트와 산장이 순차 종료"],
+  cautions:[
+    { cat:"입국", text:"한국 여권은 솅겐 지역 90일 무비자예요. 유럽 전자여행허가(ETIAS)는 아직 시행 전이고, 2027년 시행이 예상되지만 공식 날짜는 미정이에요.", src:["etias-eu","etias-btn"], conflict:true },
+    { cat:"예약", text:"트레 치메 유료 도로는 예약이 필요해요. 승용차 약 €40이에요.", src:["auronzo","mfe-dolo","kk-dolo"] },
+    { cat:"예약", text:"브라이에스 호수는 7/1~9/15 낮 시간대에 차량 진입이 예약제예요. 시작 시각이 출처마다 9:00, 9:30으로 달라요.", src:["prags","kk-dolo"], conflict:true },
+    { cat:"예약", text:"세체다의 €5 개찰구는 개인 토지주가 받는 비공식 요금이에요. 관광청에 따르면 납부는 선택이에요.", src:["euronews-seceda"] },
+    { cat:"운전", text:"도시 중심부의 차량 제한구역(ZTL)에 들어가면 카메라로 단속되고 벌금이 나중에 청구돼요. 내비게이션만 믿지 마세요.", src:["estimate"], estimate:true },
+    { cat:"시즌", text:"리프트는 9월 셋째 주 무렵(코르티나 약 9/20)부터 순차 종료돼요. 알타 바디아는 10월 초까지 운영하기도 해요.", src:["moonhoney"] }
+  ],
+  tips:["9월에 간다면 첫 2주를 노리세요. 리프트와 산장 운영이 가장 넉넉해요.","거점은 동쪽(코르티나)과 서쪽(오르티세이/발 가르데나) 두 곳으로 나누면 이동이 줄어요.","산장 점심은 현금만 받는 곳도 있으니 유로 현금을 조금 챙기세요.","인기 명소는 아침 8시 전에 도착하면 주차와 사진 모두 수월해요."],
+  compare:{
+    flight:{ value:"직항 없음. 인천→유럽(뮌헨·로마 등) 12~14시간 + 차량 2~4시간 (총 16~20시간)", level:"warn", src:["estimate"], estimate:true },
+    cost:{ value:"1인 약 400~650만원", level:"mid", src:["estimate"], estimate:true },
+    drive:{ value:"우측통행이지만 좁은 산악 고갯길, ZTL, 유료 도로", level:"mid", src:["estimate"], estimate:true },
+    trek:{ value:"케이블카 덕분에 쉬운 코스가 많음. 트레 치메 순환은 중급", level:"good", src:["estimate"], estimate:true },
+    lodging:{ value:"9월 초중순엔 여전히 수요가 많음. 3~4개월 전 예약 권장", level:"mid", src:["estimate"], estimate:true }
+  },
+  checklist:["ETIAS 시행 여부 확인 (출발 3개월 전)","트레 치메 유료 도로 예약 (auronzo.info)","브라이에스 호수 진입 예약 (9/15 이전 방문 시)","렌터카 예약 (국제운전면허증 필수)","코르티나·발 가르데나 숙소 예약","케이블카 운영 종료일 확인"]
+}];
+
+const COMPARE_ROWS = [
+  { key:"flight", label:"비행·이동" },
+  { key:"cost", label:"예상 경비 (1인)" },
+  { key:"weather", label:"선택 월 날씨" },
+  { key:"peak", label:"성수기 여부" },
+  { key:"drive", label:"운전 난이도" },
+  { key:"trek", label:"트레킹 난이도" },
+  { key:"lodging", label:"숙소 구하기" }
+];
+</script>
+
+<script id="app">
+(function (root) {
+  "use strict";
+  const MONTHS = ["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"];
+  const LEVEL_LABEL = { good:"좋음", mid:"보통", warn:"주의" };
+  const PEAK = { peak:{ label:"성수기", level:"warn" }, shoulder:{ label:"준성수기", level:"mid" }, off:{ label:"비수기", level:"good" } };
+  const DEFAULT_MONTH = 9;
+
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+  }
+  function clampMonth(m) {
+    const n = parseInt(m, 10);
+    return n >= 1 && n <= 12 ? n : DEFAULT_MONTH;
+  }
+  function parseHash(hash, regions) {
+    const p = new URLSearchParams(String(hash || "").replace(/^#/, ""));
+    const ids = regions.map(r => r.id);
+    const tab = ids.includes(p.get("tab")) ? p.get("tab") : ids[0];
+    return { month: clampMonth(p.get("month")), tab };
+  }
+  function buildHash(state) {
+    return "#month=" + clampMonth(state.month) + "&tab=" + encodeURIComponent(state.tab);
+  }
+  function stars(n) {
+    const v = Math.max(0, Math.min(5, n | 0));
+    return '<span class="stars" aria-label="5점 중 ' + v + '점">' + "★".repeat(v) + '<span class="off">' + "★".repeat(5 - v) + "</span></span>";
+  }
+  function sourceIndex(sources) {
+    const idx = {};
+    sources.forEach((s, i) => { idx[s.id] = i + 1; });
+    return idx;
+  }
+  function cite(ids, sources) {
+    const idx = sourceIndex(sources);
+    return (ids || []).map(id => idx[id] ? '<sup><a href="#src-' + esc(id) + '">[' + idx[id] + "]</a></sup>" : "").join("");
+  }
+  function badges(item, sources) {
+    let b = "";
+    const srcObjs = (item.src || []).map(id => sources.find(s => s.id === id)).filter(Boolean);
+    if (item.estimate) b += '<span class="badge b-estimate">추정</span>';
+    else if (srcObjs.length && srcObjs.every(s => !s.official)) b += '<span class="badge b-unofficial">비공식</span>';
+    if (item.conflict) b += '<span class="badge b-conflict">출처마다 다름</span>';
+    return b;
+  }
+  function level(lv, text) {
+    return '<span class="lv lv-' + esc(lv) + '">' + esc(LEVEL_LABEL[lv] || lv) + "</span>" + esc(text);
+  }
+  function weatherFor(region, month) {
+    if (month === 9 && region.weatherSep) return { text: region.weatherSep.text, src: region.weatherSep.src, conflict: region.weatherSep.conflict };
+    return { text: region.season[month - 1] + " (계절 특성 요약)", src: ["estimate"], estimate: true };
+  }
+  function weatherLevel(region, month) {
+    const r = region.monthly[month - 1];
+    return r >= 4 ? "good" : r === 3 ? "mid" : "warn";
+  }
+  function extLink(url, text) {
+    return '<a href="' + esc(url) + '" target="_blank" rel="noopener noreferrer">' + esc(text) + "</a>";
+  }
+  function photo(spot) {
+    return '<div class="ph"><img loading="lazy" src="' + esc(spot.img) + '" alt="' + esc(spot.name) + ' 풍경 사진" data-fallback="1">' +
+      '<div class="fallback">' + esc(spot.name) + "<br>사진을 불러오지 못했어요 · " + extLink(spot.page, "원본 보기") + "</div></div>" +
+      '<div class="credit">📷 ' + extLink(spot.page, spot.credit) + " · " + esc(spot.license) + "</div>";
+  }
+
+  function renderSummary(regions, month, sources) {
+    return regions.map(r => {
+      const w = weatherFor(r, month);
+      return '<article class="card ' + r.cls + '"><div class="region-bar"></div>' + photo(r.spots[0]) +
+        '<div class="body"><h3>' + r.flag + " " + esc(r.name) + "</h3>" +
+        "<div>" + stars(r.monthly[month - 1]) + ' <span class="checked">' + MONTHS[month - 1] + " 추천도</span></div>" +
+        "<p>" + esc(r.summary) + "</p>" +
+        '<p class="wx">🌤 ' + esc(w.text) + cite(w.src, sources) + "</p>" +
+        '<ul class="clean">' + r.pros.slice(0, 2).map(p => '<li class="pro">' + esc(p) + "</li>").join("") +
+        r.cons.slice(0, 2).map(c => '<li class="con">' + esc(c) + "</li>").join("") + "</ul></div></article>";
+    }).join("");
+  }
+  function renderTabs(regions, active) {
+    return regions.map(r => '<button type="button" role="tab" class="tab ' + r.cls + '" data-tab="' + r.id + '" aria-selected="' + (r.id === active) + '">' + r.flag + " " + esc(r.name) + "</button>").join("");
+  }
+  function renderPanel(region, month, sources) {
+    const spots = '<div class="grid3">' + region.spots.map(s => '<article class="card ' + region.cls + '">' + photo(s) + '<div class="body"><h3>' + esc(s.name) + "</h3><p>" + esc(s.desc) + "</p></div></article>").join("") + "</div>";
+    const pc = '<div class="grid3" style="margin-top:6px"><div class="card"><div class="body"><h3>장점</h3><ul class="clean">' + region.pros.map(p => '<li class="pro">' + esc(p) + "</li>").join("") +
+      '</ul></div></div><div class="card"><div class="body"><h3>단점</h3><ul class="clean">' + region.cons.map(p => '<li class="con">' + esc(p) + "</li>").join("") + "</ul></div></div>" +
+      '<div class="card"><div class="body"><h3>' + MONTHS[month - 1] + " 시즌</h3><p>" + stars(region.monthly[month - 1]) + "</p><p>" + esc(region.season[month - 1]) + "</p>" +
+      (region.hemisphere === "S" ? '<p class="checked">남반구: 한국과 계절이 반대예요.</p>' : "") + "</div></div></div>";
+    const cautions = region.cautions.map(c => '<div class="caution"><span class="cat">' + esc(c.cat) + "</span>" + esc(c.text) + cite(c.src, sources) + badges(c, sources) +
+      ' <span class="checked">확인 ' + esc(CHECKED_AT(sources, c.src)) + "</span></div>").join("");
+    const tips = '<ul class="clean">' + region.tips.map(t => "<li>💡 " + esc(t) + "</li>").join("") + "</ul>";
+    return '<div class="' + region.cls + '"><h3>주요 명소</h3>' + spots + "<h3>장단점</h3>" + pc + "<h3>유의할 점</h3>" + cautions + "<h3>현지 팁</h3>" + tips + "</div>";
+  }
+  function CHECKED_AT(sources, ids) {
+    const s = sources.find(x => (ids || []).includes(x.id));
+    return s ? s.checkedAt : "";
+  }
+  function cellFor(region, key, month, sources) {
+    if (key === "weather") {
+      const w = weatherFor(region, month);
+      return level(weatherLevel(region, month), w.text) + cite(w.src, sources) + badges(w, sources);
+    }
+    if (key === "peak") {
+      const p = PEAK[region.peak[month - 1]];
+      return level(p.level, p.label);
+    }
+    const c = region.compare[key];
+    return level(c.level, c.value) + cite(c.src, sources) + badges(c, sources);
+  }
+  function renderCompare(regions, month, rows, sources) {
+    const head = '<thead><tr><th scope="col">' + MONTHS[month - 1] + " 기준</th>" + regions.map(r => '<th scope="col" class="' + r.cls + '">' + r.flag + " " + esc(r.name) + "</th>").join("") + "</tr></thead>";
+    const body = "<tbody>" + rows.map(row => '<tr><th scope="row">' + esc(row.label) + "</th>" + regions.map(r => "<td>" + cellFor(r, row.key, month, sources) + "</td>").join("") + "</tr>").join("") + "</tbody>";
+    return '<table class="compare">' + head + body + "</table>";
+  }
+  function renderHeatmap(regions, month) {
+    const head = '<thead><tr><th scope="col"><span class="sr-only">지역</span></th>' + MONTHS.map((m, i) => '<th scope="col"' + (i + 1 === month ? ' class="sel"' : "") + ">" + m + "</th>").join("") + "</tr></thead>";
+    const body = "<tbody>" + regions.map(r => '<tr><th scope="row">' + r.flag + " " + esc(r.name) + "</th>" + r.monthly.map((v, i) =>
+      '<td class="' + (i + 1 === month ? "sel" : "") + '"><button type="button" class="h' + v + '" data-month="' + (i + 1) + '" title="' + esc(r.season[i]) + '" aria-label="' + esc(r.name) + " " + MONTHS[i] + " " + v + '점">' + v + "</button></td>").join("") + "</tr>").join("") + "</tbody>";
+    return '<table class="heat">' + head + body + "</table>";
+  }
+  function renderChecklists(regions, checked) {
+    return regions.map(r => '<div class="card ' + r.cls + '"><div class="region-bar"></div><div class="body checklist"><h3>' + r.flag + " " + esc(r.name) + "</h3>" +
+      r.checklist.map((item, i) => { const key = r.id + ":" + i; return '<label><input type="checkbox" data-key="' + key + '"' + (checked[key] ? " checked" : "") + "><span>" + esc(item) + "</span></label>"; }).join("") +
+      "</div></div>").join("");
+  }
+  function renderSources(sources) {
+    return sources.map(s => '<li id="src-' + esc(s.id) + '">' + (s.url ? extLink(s.url, s.title) : esc(s.title)) +
+      (s.official ? '<span class="badge b-official">공식</span>' : s.url ? '<span class="badge b-unofficial">비공식</span>' : '<span class="badge b-estimate">추정</span>') +
+      ' <span class="checked">확인 ' + esc(s.checkedAt) + (s.read ? "" : " · 링크만 확인, 본문 미열람") + "</span></li>").join("");
+  }
+  function makeStore(getStorage) {
+    return {
+      get(key, fallback) { try { const v = getStorage().getItem(key); return v == null ? fallback : JSON.parse(v); } catch (e) { return fallback; } },
+      set(key, value) { try { getStorage().setItem(key, JSON.stringify(value)); return true; } catch (e) { return false; } }
+    };
+  }
+
+  const App = { MONTHS, esc, clampMonth, parseHash, buildHash, stars, cite, badges, weatherFor, renderSummary, renderTabs, renderPanel, renderCompare, renderHeatmap, renderChecklists, renderSources, makeStore };
+  root.TravelApp = App;
+
+  if (typeof document === "undefined") return;
+
+  const store = makeStore(() => window.localStorage);
+  let state = parseHash(location.hash, REGIONS);
+  let checked = store.get("travel-checklist", {});
+  const $ = id => document.getElementById(id);
+
+  function applyTheme(t) {
+    if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+    else document.documentElement.removeAttribute("data-theme");
+  }
+  applyTheme(store.get("travel-theme", null));
+
+  $("month").innerHTML = MONTHS.map((m, i) => '<option value="' + (i + 1) + '">' + m + "</option>").join("");
+  $("checked-at").textContent = "정보 확인일: " + CHECKED;
+  $("source-list").innerHTML = renderSources(SOURCES);
+
+  function render() {
+    $("month").value = String(state.month);
+    $("summary-month").textContent = MONTHS[state.month - 1] + " 기준";
+    $("summary-cards").innerHTML = renderSummary(REGIONS, state.month, SOURCES);
+    $("tabs").innerHTML = renderTabs(REGIONS, state.tab);
+    $("panel").innerHTML = renderPanel(REGIONS.find(r => r.id === state.tab), state.month, SOURCES);
+    $("compare-table").innerHTML = renderCompare(REGIONS, state.month, COMPARE_ROWS, SOURCES);
+    $("heatmap").innerHTML = renderHeatmap(REGIONS, state.month);
+    $("checklists").innerHTML = renderChecklists(REGIONS, checked);
+  }
+  function setState(patch) {
+    state = Object.assign({}, state, patch);
+    const h = buildHash(state);
+    if (location.hash !== h) { try { history.replaceState(null, "", h); } catch (e) { location.hash = h; } }
+    render();
+  }
+
+  document.addEventListener("error", e => {
+    const t = e.target;
+    if (t && t.tagName === "IMG" && t.dataset.fallback) t.parentElement.classList.add("broken");
+  }, true);
+  $("month").addEventListener("change", e => setState({ month: clampMonth(e.target.value) }));
+  $("tabs").addEventListener("click", e => { const b = e.target.closest("[data-tab]"); if (b) setState({ tab: b.dataset.tab }); });
+  $("heatmap").addEventListener("click", e => { const b = e.target.closest("[data-month]"); if (b) setState({ month: clampMonth(b.dataset.month) }); });
+  $("checklists").addEventListener("change", e => {
+    const k = e.target.dataset && e.target.dataset.key;
+    if (!k) return;
+    if (e.target.checked) checked[k] = true; else delete checked[k];
+    store.set("travel-checklist", checked);
+  });
+  $("theme-toggle").addEventListener("click", () => {
+    const cur = document.documentElement.getAttribute("data-theme");
+    const sysDark = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches;
+    const next = (cur || (sysDark ? "dark" : "light")) === "dark" ? "light" : "dark";
+    applyTheme(next);
+    store.set("travel-theme", next);
+  });
+  window.addEventListener("hashchange", () => { state = parseHash(location.hash, REGIONS); render(); });
+
+  render();
+
+  if (/[?&]selftest=1/.test(location.search)) {
+    const de = document.documentElement;
+    const wide = [...document.querySelectorAll("body *")]
+      .filter(el => !el.closest(".scroll-x,.tabs") && el.getBoundingClientRect().right > de.clientWidth + 1)
+      .slice(0, 5).map(el => el.tagName + "." + el.className);
+    const result = {
+      vw: window.innerWidth,
+      overflow: de.scrollWidth > de.clientWidth,
+      wide,
+      tab: (document.querySelector("#tabs [aria-selected=true]") || {}).dataset?.tab,
+      monthLabel: document.getElementById("summary-month").textContent,
+      cards: document.querySelectorAll("#summary-cards .card").length,
+      spots: document.querySelectorAll("#panel .ph").length,
+      heatCells: document.querySelectorAll("#heatmap button").length,
+      compareRows: document.querySelectorAll("#compare-table tbody tr").length,
+      sources: document.querySelectorAll("#source-list li").length
+    };
+    document.body.setAttribute("data-selftest", JSON.stringify(result));
+    if (window.parent !== window) window.parent.postMessage({ selftest: result }, "*");
+  }
+})(typeof window !== "undefined" ? window : globalThis);
+</script>
+</body>
+</html>
